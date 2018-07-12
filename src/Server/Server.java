@@ -25,6 +25,7 @@ public class Server
 	{
 		try
 		{
+			System.out.println("tom");
 			int port = 8080;
 			ServerSocket serverSocket = new ServerSocket(port);
 
