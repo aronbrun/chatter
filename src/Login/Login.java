@@ -6,12 +6,18 @@ import com.nexmo.client.auth.AuthMethod;
 import com.nexmo.client.auth.TokenAuthMethod;
 import com.nexmo.client.sms.SmsSubmissionResult;
 import com.nexmo.client.sms.messages.TextMessage;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Login
-{
-    public static void main(String[] args){
+public class Login extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
         AuthMethod auth = new TokenAuthMethod("746702b4", "bg77UTqIJ8cdPmPq");
         NexmoClient client = new NexmoClient(auth);
 
@@ -28,5 +34,15 @@ public class Login
         {
             e.printStackTrace();
         }
+
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.show();
+    }
+
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }
