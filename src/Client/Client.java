@@ -33,7 +33,7 @@ public class Client implements Runnable
             String host = "localhost";
             int port = 8080;
             InetAddress address = InetAddress.getByName(host);
-            socket = new Socket(address, port);
+            socket = new Socket(address, port);hallo
 
             //Send the message to the server
             ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
