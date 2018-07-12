@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="105.0" prefWidth="211.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="202.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.Controller">
    <children>
-      <Text layoutX="26.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handynummer" textAlignment="CENTER" wrappingWidth="165.7402229309082" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="18.0">
+      <Text layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handynummer" textAlignment="CENTER" wrappingWidth="200.99999879300594" AnchorPane.rightAnchor="9.0">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
-      <JFXTextField layoutX="69.0" layoutY="58.0" prefHeight="20.0" prefWidth="115.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="58.0">
+      <JFXTextField layoutX="53.0" layoutY="49.0" prefHeight="38.0" prefWidth="134.0" AnchorPane.rightAnchor="9.0">
          <font>
-            <Font size="21.0" />
+            <Font size="17.0" />
          </font>
       </JFXTextField>
-      <Text layoutX="28.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+41" textAlignment="CENTER" wrappingWidth="43.740230560302734" AnchorPane.bottomAnchor="39.7333984375" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="55.6552734375">
+      <Text layoutX="6.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+41" textAlignment="CENTER" wrappingWidth="43.740230560302734" AnchorPane.leftAnchor="9.0">
          <font>
             <Font size="17.0" />
          </font>
       </Text>
+      <JFXButton fx:id="btnContinue" layoutX="9.0" layoutY="100.0" prefHeight="34.0" prefWidth="182.0" text="Weiter" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" />
    </children>
 </AnchorPane>
