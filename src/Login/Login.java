@@ -25,7 +25,7 @@ public class Login extends Application {
         {
             SmsSubmissionResult[] responses = client.getSmsClient().submitMessage(new TextMessage(
                     "Chatter",
-                    "0041791994779",
+                    "0041794496199",
                     "Dein Verifizierungscode ist: " + (int) (Math.random()*9999) + 1));
         } catch (IOException e)
         {
@@ -36,8 +36,8 @@ public class Login extends Application {
         }
 
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("Login");
+        primaryStage.setScene(new Scene(root, 211, 105));
         primaryStage.show();
     }
 

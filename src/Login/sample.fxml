@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 
-<GridPane alignment="center" hgap="10" prefHeight="166.0" prefWidth="281.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="Login.Controller">
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-   </rowConstraints>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="105.0" prefWidth="211.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <JFXTextField GridPane.rowIndex="1" />
+      <Text layoutX="26.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handynummer" textAlignment="CENTER" wrappingWidth="165.7402229309082" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="18.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <JFXTextField layoutX="69.0" layoutY="58.0" prefHeight="20.0" prefWidth="115.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="58.0">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </JFXTextField>
+      <Text layoutX="28.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+41" textAlignment="CENTER" wrappingWidth="43.740230560302734" AnchorPane.bottomAnchor="39.7333984375" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="55.6552734375">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
    </children>
-</GridPane>
+</AnchorPane>
