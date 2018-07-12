@@ -30,7 +30,7 @@ public class Client implements Runnable
     {
         try
         {
-            String host = "localhost";
+            String host = "10.10.100.110";
             int port = 8080;
             InetAddress address = InetAddress.getByName(host);
             socket = new Socket(address, port);
@@ -45,7 +45,8 @@ public class Client implements Runnable
             //Get the return message from the server
             ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
             String message = (String)is.readObject();
-            Platform.runLater(() -> controller.textarea.setText(message));
+            if()
+            Platform.runLater(() -> controller.textarea.setText(message + "\n"));
         }
         catch (Exception exception)
         {
