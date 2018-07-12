@@ -48,7 +48,7 @@ public class Client implements Runnable
             String message = (String)is.readObject();
             String ip = message.split(":")[1];
 
-            if(!ip.equals(socket.getInetAddress().toString().split("/")[1])) {
+            if(!ip.equals(InetAddress.getLocalHost().toString().split("/")[1])) {
                 Platform.runLater(() -> controller.textarea.setText(message + "\n"));
             }
         }
