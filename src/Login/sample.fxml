@@ -6,7 +6,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="202.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.Controller">
    <children>
       <Text layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handynummer" textAlignment="CENTER" wrappingWidth="200.99999879300594" AnchorPane.rightAnchor="9.0">
@@ -14,7 +13,7 @@
             <Font size="23.0" />
          </font>
       </Text>
-      <JFXTextField layoutX="53.0" layoutY="49.0" prefHeight="38.0" prefWidth="134.0" AnchorPane.rightAnchor="9.0">
+      <JFXTextField fx:id="lblNumber" layoutX="53.0" layoutY="49.0" prefHeight="38.0" prefWidth="134.0" AnchorPane.rightAnchor="9.0">
          <font>
             <Font size="17.0" />
          </font>
