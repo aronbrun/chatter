@@ -30,7 +30,6 @@ public class Server
 
 			while(true)
 			{
-				System.out.println("aron");
 				//Reading the message from the client
 				socket = serverSocket.accept();
 				ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
