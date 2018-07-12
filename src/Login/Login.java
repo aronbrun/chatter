@@ -21,23 +21,6 @@ public class Login extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        AuthMethod auth = new TokenAuthMethod("746702b4", "bg77UTqIJ8cdPmPq");
-        NexmoClient client = new NexmoClient(auth);
-
-        try
-        {
-            SmsSubmissionResult[] responses = client.getSmsClient().submitMessage(new TextMessage(
-                    "Chatter",
-                    "0041794496199",
-                    "Dein Verifizierungscode ist: " + (int) (Math.random()*9999) + 1));
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        } catch (NexmoClientException e)
-        {
-            e.printStackTrace();
-        }
-
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Login");
         primaryStage.setResizable(false);
