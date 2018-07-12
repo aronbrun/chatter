@@ -14,9 +14,13 @@
             <Font size="23.0" />
          </font>
       </Text>
+<<<<<<< HEAD
+      <JFXTextField layoutX="69.0" layoutY="58.0" prefHeight="20.0" prefWidth="115.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="58.0">
+=======
       <JFXTextField layoutX="53.0" layoutY="49.0" prefHeight="38.0" prefWidth="134.0" AnchorPane.rightAnchor="9.0">
+>>>>>>> 7e5ee1b9c7ea564122ad24e02d9b5de7dd895555
          <font>
-            <Font size="17.0" />
+            <Font size="21.0" />
          </font>
       </JFXTextField>
       <Text layoutX="6.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+41" textAlignment="CENTER" wrappingWidth="43.740230560302734" AnchorPane.leftAnchor="9.0">

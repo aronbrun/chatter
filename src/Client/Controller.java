@@ -21,8 +21,9 @@ public class Controller implements Initializable {
 	public Button btn_send;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		textarea.setFont(new Font("Serif",  16));
+		textarea.setFont(new Font("Serif",  25));
 		btn_send.setOnAction(event -> {
+			textarea.setText(send_text.getText() + "\n");
 			Client client = new Client(this);
 			client.sendtext = send_text.getText();
 			new Thread(client).start();

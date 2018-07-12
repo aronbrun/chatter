@@ -35,11 +35,11 @@ public class Server
 				ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
 				String text = (String)is.readObject();
 
-				System.out.println(text);
+				String ip = text.split(":")[1];
 				String returnMessage;
 				returnMessage = text;
 
-				//Sending the response back to the client.
+				//Sending the response back to the clients
 				ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
 				os.writeObject(returnMessage);
 				os.flush();
