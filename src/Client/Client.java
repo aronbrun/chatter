@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
 import java.io.*;
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -45,8 +46,11 @@ public class Client implements Runnable
             //Get the return message from the server
             ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
             String message = (String)is.readObject();
-            if()
-            Platform.runLater(() -> controller.textarea.setText(message + "\n"));
+            String ip = message.split(":")[1];
+
+            if(!ip.equals(socket.getInetAddress().toString().split("/")[1])) {
+                Platform.runLater(() -> controller.textarea.setText(message + "\n"));
+            }
         }
         catch (Exception exception)
         {

@@ -35,7 +35,6 @@ public class Server
 				ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
 				String text = (String)is.readObject();
 
-				String ip = text.split(":")[1];
 				String returnMessage;
 				returnMessage = text;
 
