@@ -25,7 +25,8 @@ public class Server
 	public static void main(String[] args) {
 		try {
 			ServerSocket s = new ServerSocket(8080);
-			System.out.println("Server gestartet");
+			System.out.println("----Server gestartet----");
+
 			while (true) {
 				Socket client = s.accept();
 				if (client != null) {

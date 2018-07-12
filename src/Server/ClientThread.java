@@ -46,6 +46,7 @@ public class ClientThread implements Runnable {
 				for (ClientThread clientThread : Server.clients) {
 					if (!clientThread.equals(this)) {
 						clientThread.send(input);
+						System.out.println(input + " send to " + clientThread.socket.getInetAddress());
 					}
 				}
 			}

@@ -21,10 +21,18 @@ public class GUI extends Application
 		Scene scene = new Scene(root, 700, 700);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+
+		// Connect to the Server
+		Client client = new Client("10.10.100.110", 8080);
+
+		// Runs a new Client
+		Thread clientThread = new Thread(client);
+		clientThread.start();
 	}
 	public static void main(String args[])
 	{
 		launch(args);
+
 	}
 }
 

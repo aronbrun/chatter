@@ -10,52 +10,52 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.io.*;
+import java.net.ConnectException;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.Socket;
 
 public class Client implements Runnable
 {
-    private static Socket socket;
-    private Controller controller;
-    public String sendtext = "";
-    public String ip;
+    private Socket socket;
+    private ObjectInputStream din;
+    private static ObjectOutputStream dout;
 
-    public Client(Controller controller) {
-        this.controller = controller;
+    public Client(String ip, int port) {
+        try {
+            socket = new Socket(ip, port);
+            din = new ObjectInputStream(socket.getInputStream());
+            dout = new ObjectOutputStream(socket.getOutputStream());
+        } catch (ConnectException e) {
+            JOptionPane.showMessageDialog(null, "Server ist aus oder keine Internet Verbindung");
+            System.exit(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void run()
     {
         try
         {
-            String host = "10.10.100.110";
-            int port = 8080;
-            InetAddress address = InetAddress.getByName(host);
-            socket = new Socket(address, port);
-
-            //Send the message to the server
-            ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
-            String sendMessage = sendtext;
-            os.writeObject(sendMessage);
-            os.flush();
-
-            //Get the return message from the server
-            ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
-            String message = (String)is.readObject();
-            String ip = message.split(":")[1];
-
-            if(!ip.equals(InetAddress.getLocalHost().toString().split("/")[1])) {
-                Platform.runLater(() -> controller.textarea.setText(message + "\n"));
+            while (true) {
+                String message = null;
+                try {
+                    message = (String) din.readObject();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                Controller.textarea.setText(Controller.textarea.getText()+ "\n" + Controller.send_text.getText());
+                Controller.send_text.clear();
             }
         }
-        catch (Exception exception)
+        catch (IOException e)
         {
-            exception.printStackTrace();
-        }
-        finally
+            e.printStackTrace();
+        } finally
         {
             //Closing the socket
             try
@@ -66,6 +66,15 @@ public class Client implements Runnable
             {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static void send(String text) {
+        try {
+            Controller.textarea.setText(Controller.textarea.getText()+ "\n" + text);
+            dout.writeObject((String) text);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
