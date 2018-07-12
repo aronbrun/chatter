@@ -38,8 +38,7 @@ public class Client implements Runnable
 
             //Send the message to the server
             ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
-            ip = socket.getLocalAddress().getHostAddress();
-            String sendMessage = sendtext + ":" + ip;
+            String sendMessage = sendtext;
             os.writeObject(sendMessage);
             os.flush();
 
