@@ -45,7 +45,6 @@ public class Client implements Runnable
             //Get the return message from the server
             ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
             String message = (String)is.readObject();
-            if()
             Platform.runLater(() -> controller.textarea.setText(message + "\n"));
         }
         catch (Exception exception)
