@@ -48,8 +48,11 @@ public class Client implements Runnable
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-                Controller.textarea.setText(Controller.textarea.getText()+ "\n" + Controller.send_text.getText());
-                Controller.send_text.clear();
+                if(GUI.controller != null)
+                {
+                    GUI.controller.textarea.setText(GUI.controller.textarea.getText() + "\n" + message);
+                    GUI.controller.send_text.clear();
+                }
             }
         }
         catch (IOException e)
@@ -71,7 +74,6 @@ public class Client implements Runnable
 
     public static void send(String text) {
         try {
-            Controller.textarea.setText(Controller.textarea.getText()+ "\n" + text);
             dout.writeObject((String) text);
         } catch (IOException e) {
             e.printStackTrace();

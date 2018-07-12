@@ -12,11 +12,13 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GUI extends Application
-{
+public class GUI extends Application {
+
+    public static Controller controller;
+
 	@Override
 	public void start(Stage primaryStage) throws Exception{
-		Parent root = FXMLLoader.load(getClass().getResource("../Client/sample.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 		primaryStage.setTitle("Hello World");
 		Scene scene = new Scene(root, 700, 700);
 		primaryStage.setScene(scene);
