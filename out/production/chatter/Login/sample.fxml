@@ -13,11 +13,7 @@
             <Font size="23.0" />
          </font>
       </Text>
-<<<<<<< HEAD
-      <JFXTextField layoutX="53.0" layoutY="49.0" prefHeight="38.0" prefWidth="134.0" AnchorPane.rightAnchor="9.0">
-=======
       <JFXTextField fx:id="lblNumber" layoutX="53.0" layoutY="49.0" prefHeight="38.0" prefWidth="134.0" AnchorPane.rightAnchor="9.0">
->>>>>>> 3caf3d45e4b24b7aa77afb86df04e44d460f104d
          <font>
             <Font size="17.0" />
          </font>

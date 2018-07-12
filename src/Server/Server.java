@@ -12,6 +12,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -20,41 +21,21 @@ import java.util.ResourceBundle;
 public class Server
 {
 
-	private static Socket socket;
-	public static void main(String[] args)
-	{
-		try
-		{
-			int port = 8080;
-			ServerSocket serverSocket = new ServerSocket(port);
-
-			while(true)
-			{
-				//Reading the message from the client
-				socket = serverSocket.accept();
-				ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
-				String text = (String)is.readObject();
-
-				String returnMessage;
-				returnMessage = text;
-
-				//Sending the response back to the clients
-				ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
-				os.writeObject(returnMessage);
-				os.flush();
+	public static ArrayList<ClientThread> clients = new ArrayList<ClientThread>();
+	public static void main(String[] args) {
+		try {
+			ServerSocket s = new ServerSocket(8080);
+			System.out.println("Server gestartet");
+			while (true) {
+				Socket client = s.accept();
+				if (client != null) {
+					ClientThread ct = new ClientThread(client);
+					clients.add(ct);
+					new Thread(ct).start();
+				}
 			}
-		}
-		catch (Exception e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
-				socket.close();
-			}
-			catch(Exception e){}
 		}
 	}
 }
