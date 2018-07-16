@@ -10,8 +10,8 @@
    <children>
       <JFXTextField fx:id="send_text" layoutX="233.0" layoutY="501.0" prefHeight="45.0" prefWidth="357.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="233.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="650.0" />
       <JFXButton fx:id="btn_send" layoutX="590.0" layoutY="652.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="101.0" text="send" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="652.0" />
-      <JFXListView prefHeight="700.0" prefWidth="223.0" />
-      <ListView fx:id="list" layoutX="223.0" layoutY="-1.0" prefHeight="640.0" prefWidth="242.0" />
-      <ListView fx:id="list1" layoutX="458.0" layoutY="-1.0" prefHeight="640.0" prefWidth="242.0" />
+      <JFXListView fx:id="list_names" prefHeight="700.0" prefWidth="223.0" />
+      <ListView fx:id="list_get" layoutX="223.0" layoutY="-1.0" prefHeight="640.0" prefWidth="242.0" />
+      <ListView fx:id="list_send" layoutX="458.0" layoutY="-1.0" prefHeight="640.0" prefWidth="242.0" />
    </children>
 </AnchorPane>

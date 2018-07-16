@@ -1,5 +1,6 @@
 package Client;
 
+import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 	@FXML
-	public TextArea textarea;
+	public JFXListView list_names;
 	@FXML
 	public TextField send_text;
 	@FXML
@@ -24,20 +25,21 @@ public class Controller implements Initializable {
 	@FXML
 	public AnchorPane pane;
 	@FXML
-	public ListView list;
+	public ListView list_get;
 	@FXML
-	public ListView list1;
-	public  ObservableList<String> items =FXCollections.observableArrayList ();
-	public  ObservableList<String> items1 =FXCollections.observableArrayList ();
+	public ListView list_send;
+	public  ObservableList<String> items_get =FXCollections.observableArrayList ();
+	public  ObservableList<String> items_send =FXCollections.observableArrayList ();
+	public  ObservableList<String> chat_names =FXCollections.observableArrayList ();
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 	    GUI.controller = this;
 
 		btn_send.setOnAction(event -> {
-			items1.add(send_text.getText());
-			list1.setItems(items1);
-			items.add("\n");
+			items_send.add(send_text.getText());
+			list_send.setItems(items_send);
+			items_get.add("\n");
 			Client.send(send_text.getText());
 		});
 	}

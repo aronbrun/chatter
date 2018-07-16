@@ -28,6 +28,8 @@ public class Client implements Runnable
     {
         try
         {
+            GUI.controller.chat_names.add(socket.getInetAddress().toString());
+            GUI.controller.list_names.setItems(GUI.controller.chat_names);
             while (true) {
                 String message = null;
                 try {
@@ -37,9 +39,9 @@ public class Client implements Runnable
                 }
                 if(GUI.controller != null)
                 {
-                    GUI.controller.items.add(message);
-                    GUI.controller.list.setItems(GUI.controller.items);
-                    GUI.controller.items1.add("\n");
+                    GUI.controller.items_get.add(message);
+                    GUI.controller.list_get.setItems(GUI.controller.items_get);
+                    GUI.controller.items_send.add("\n");
                     GUI.controller.send_text.clear();
                 }
             }
