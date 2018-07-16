@@ -37,7 +37,9 @@ public class Client implements Runnable
                 }
                 if(GUI.controller != null)
                 {
-                    GUI.controller.textarea.setText(GUI.controller.textarea.getText() + "\n" + message);
+                    GUI.controller.items.add(message);
+                    GUI.controller.list.setItems(GUI.controller.items);
+                    GUI.controller.items1.add("\n");
                     GUI.controller.send_text.clear();
                 }
             }

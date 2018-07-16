@@ -2,8 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane fx:id="pane" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller">
@@ -11,6 +11,7 @@
       <JFXTextField fx:id="send_text" layoutX="233.0" layoutY="501.0" prefHeight="45.0" prefWidth="357.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="233.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="650.0" />
       <JFXButton fx:id="btn_send" layoutX="590.0" layoutY="652.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="101.0" text="send" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="652.0" />
       <JFXListView prefHeight="700.0" prefWidth="223.0" />
-      <JFXTextArea fx:id="textarea" layoutX="223.0" prefHeight="652.0" prefWidth="474.0" />
+      <ListView fx:id="list" layoutX="223.0" layoutY="-1.0" prefHeight="640.0" prefWidth="242.0" />
+      <ListView fx:id="list1" layoutX="458.0" layoutY="-1.0" prefHeight="640.0" prefWidth="242.0" />
    </children>
 </AnchorPane>

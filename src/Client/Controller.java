@@ -1,8 +1,11 @@
 package Client;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -20,13 +23,21 @@ public class Controller implements Initializable {
 	public Button btn_send;
 	@FXML
 	public AnchorPane pane;
+	@FXML
+	public ListView list;
+	@FXML
+	public ListView list1;
+	public  ObservableList<String> items =FXCollections.observableArrayList ();
+	public  ObservableList<String> items1 =FXCollections.observableArrayList ();
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 	    GUI.controller = this;
 
 		btn_send.setOnAction(event -> {
-			textarea.setText(textarea.getText()+ "\n"  + send_text.getText());
+			items1.add(send_text.getText());
+			list1.setItems(items1);
+			items.add("\n");
 			Client.send(send_text.getText());
 		});
 	}
