@@ -6,7 +6,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller">
+<AnchorPane fx:id="pane" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller">
    <children>
       <JFXTextField fx:id="send_text" layoutX="233.0" layoutY="501.0" prefHeight="45.0" prefWidth="357.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="233.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="650.0" />
       <JFXButton fx:id="btn_send" layoutX="590.0" layoutY="652.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="101.0" text="send" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="652.0" />
