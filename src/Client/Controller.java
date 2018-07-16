@@ -14,17 +14,19 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 	@FXML
-	public static TextArea textarea;
+	public TextArea textarea;
 	@FXML
-	public static TextField send_text;
+	public TextField send_text;
 	@FXML
 	public Button btn_send;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		textarea.setFont(new Font("Serif",  25));
+
+	    GUI.controller = this;
+
 		btn_send.setOnAction(event -> {
+			textarea.setText(textarea.getText()+ "\n" + send_text.getText());
 			Client.send(send_text.getText());
 		});
 	}
-
 }
