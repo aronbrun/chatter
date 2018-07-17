@@ -61,11 +61,14 @@ public class Controller implements Initializable {
 		list_names.setOnMouseClicked(event ->{
 			try {
 				if(!ipchat.containsValue(ipsend)){
+					System.out.println("notin");
 					chats.getSelectionModel().select(chat);
 					chat++;
 				}else{
+					System.out.println("size: " + ipchat.size());
 					for(int i =0; i < ipchat.size(); i++){
 						if(ipchat.get(i).equals(ipsend)){
+							System.out.println("match");
 							chat = i + 1;
 						}
 					}
