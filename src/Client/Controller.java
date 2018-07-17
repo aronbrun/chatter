@@ -39,18 +39,7 @@ public class Controller implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 	    GUI.controller = this;
 
-		try(final DatagramSocket socket = new DatagramSocket()){
-			socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
-			ipsend = socket.getLocalAddress().getHostAddress();
-			chat_names.add(ipsend);
-			list_names.setItems(chat_names);
-		} catch (SocketException e)
-		{
-			e.printStackTrace();
-		} catch (UnknownHostException e)
-		{
-			e.printStackTrace();
-		}
+	    list_names.setItems(chat_names);
 		list_names.setOnMouseClicked(event ->{
 			ipsend = list_names.getSelectionModel().getSelectedItem().toString();
 				});
