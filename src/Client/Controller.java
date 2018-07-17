@@ -69,7 +69,7 @@ public class Controller implements Initializable {
 					for(int i =0; i < ipchat.size(); i++){
 						if(ipchat.get(i).equals(ipsend)){
 							System.out.println("match");
-							chat = i + 1;
+							chat = i + 2;
 						}
 					}
 				}
