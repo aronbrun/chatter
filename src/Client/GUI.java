@@ -11,8 +11,7 @@ import javafx.stage.WindowEvent;
 
 public class GUI extends Application {
 
-    public static Controller controller;
-
+    public static ControllerClient controllerClient;
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));

@@ -1,6 +1,5 @@
 package Client;
 
-import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,10 +41,10 @@ public class Client implements Runnable
                         ArrayList<String> rawList = (ArrayList<String>) obj;
                         ObservableList<String> list = FXCollections.observableArrayList(rawList);
                         Platform.runLater(() -> {
-                                    GUI.controller.list_names.setItems(list);
-                                    GUI.controller.list_names.refresh();
+                                    GUI.controllerClient.list_names.setItems(list);
+                                    GUI.controllerClient.list_names.refresh();
                         });
-                        // GUI.controller = null;
+                        // GUI.controllerClient = null;
                         continue;
                     } else if (obj instanceof String) {
                         message = (String) obj;
@@ -55,13 +54,13 @@ public class Client implements Runnable
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-                if(GUI.controller != null)
+                if(GUI.controllerClient != null)
                 {
                     final String finalMessage = message;
                     Platform.runLater(() -> {
-                        GUI.controller.tabs.get(GUI.controller.chat).getitems.add(finalMessage);
-                        GUI.controller.tabs.get(GUI.controller.chat).getfield.setItems(GUI.controller.tabs.get(GUI.controller.chat).getitems);
-                        GUI.controller.tabs.get(GUI.controller.chat).senditems.add("\n");
+                        GUI.controllerClient.tabs.get(GUI.controllerClient.chat).getitems.add(finalMessage);
+                        GUI.controllerClient.tabs.get(GUI.controllerClient.chat).getfield.setItems(GUI.controllerClient.tabs.get(GUI.controllerClient.chat).getitems);
+                        GUI.controllerClient.tabs.get(GUI.controllerClient.chat).senditems.add("\n");
                     });
                 }
             }
