@@ -48,7 +48,11 @@ public class ClientThread implements Runnable {
 					input = (String) din.readObject();
 					inputparts = input.split(":");
 					input = inputparts[0];
-					iptosend = inputparts[1];
+					if(inputparts.length == 2){
+						iptosend = inputparts[1];
+					}else{
+						iptosend = "";
+					}
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}
