@@ -15,6 +15,10 @@ public class ClientThread implements Runnable {
 	private ObjectInputStream din;
 	private String input;
 
+	public Socket getSocket() {
+		return socket;
+	}
+
 	ClientThread(Socket socket) {
 		this.socket = socket;
 		try {
@@ -26,7 +30,7 @@ public class ClientThread implements Runnable {
 		}
 	}
 
-	private void send(String text) {
+	public void send(Object text) {
 		try {
 			dout.writeObject(text);
 		} catch (IOException e) {
@@ -45,19 +49,18 @@ public class ClientThread implements Runnable {
 				}
 
 				// Send to other clients
-					for (ClientThread clientThread : Server.clients) {
+					for (ClientThread clientThread : Server.getClientList()) {
 						if (!clientThread.equals(this)) {
-							GUI.controller.chat_names.add(clientThread.socket.getInetAddress().toString());
 							clientThread.send(input);
-							System.out.println(input + " sent to " + clientThread.socket.getInetAddress());
 						}
 					}
 
 			}
 		} catch (SocketException e) {
-			Server.clients.remove(this);
+			Server.removeClient(this);
 			Thread.currentThread().interrupt();
 		} catch (IOException e) {
+		} catch (Exception e) {
 		}
 	}
 }
