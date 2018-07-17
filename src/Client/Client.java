@@ -41,7 +41,6 @@ public class Client implements Runnable
                     if (obj instanceof ArrayList) {
                         ArrayList<String> rawList = (ArrayList<String>) obj;
                         ObservableList<String> list = FXCollections.observableArrayList(rawList);
-                        System.out.println(rawList + " ||| " + list);
                         Platform.runLater(() -> {
                                     GUI.controller.list_names.setItems(list);
                                     GUI.controller.list_names.refresh();
@@ -86,7 +85,7 @@ public class Client implements Runnable
 
     public static void send(String text) {
         try {
-            dout.writeObject((String) text);
+            dout.writeObject(text);
         } catch (IOException e) {
             e.printStackTrace();
         }

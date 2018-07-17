@@ -24,9 +24,6 @@ public class Server
 			while (true) {
 				Socket client = s.accept();
 				if (client != null) {
-					//chat_names.add(client.getInetAddress().toString());
-					//System.out.println(chat_names.size());
-					// GUI.controller.list_names.setItems(chat_names);
 
 					ClientThread ct = new ClientThread(client);
 					clientz.put(ct, client.getInetAddress().toString());

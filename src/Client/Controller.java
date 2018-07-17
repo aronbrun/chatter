@@ -38,14 +38,16 @@ public class Controller implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 	    GUI.controller = this;
 		list_names.setOnMouseClicked(event ->{
-			ipsend = list_names.getSelectionModel().getSelectedItem().toString();
-			System.out.println(ipsend);
+			try {
+				ipsend = list_names.getSelectionModel().getSelectedItem().toString();
+			}catch (NullPointerException e){
+			}
 				});
 		btn_send.setOnAction(event -> {
 			items_send.add(send_text.getText());
 			list_send.setItems(items_send);
 			items_get.add("\n");
-			Client.send(send_text.getText());
+			Client.send(send_text.getText() + ":" + ipsend);
 			send_text.clear();
 		});
 	}
