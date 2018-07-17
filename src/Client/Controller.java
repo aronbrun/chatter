@@ -60,10 +60,12 @@ public class Controller implements Initializable {
 
 		list_names.setOnMouseClicked(event ->{
 			try {
+				ipsend = list_names.getSelectionModel().getSelectedItem().toString();
 				if(!ipchat.containsValue(ipsend)){
 					System.out.println("notin");
 					chats.getSelectionModel().select(chat);
 					chat++;
+					ipchat.put(chat - 1, ipsend);
 				}else{
 					System.out.println("size: " + ipchat.size());
 					for(int i =0; i < ipchat.size(); i++){
@@ -73,8 +75,6 @@ public class Controller implements Initializable {
 						}
 					}
 				}
-				ipsend = list_names.getSelectionModel().getSelectedItem().toString();
-				ipchat.put(chat - 1, ipsend);
 			}catch (NullPointerException e){
 			}
 				});
