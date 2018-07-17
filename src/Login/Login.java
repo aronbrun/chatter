@@ -22,9 +22,9 @@ public class Login extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Login");
+        primaryStage.setTitle("Regsitrierung");
         primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(root, 202, 134));
+        primaryStage.setScene(new Scene(root, 202, 199));
         primaryStage.show();
     }
 
