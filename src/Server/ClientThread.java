@@ -50,6 +50,7 @@ public class ClientThread implements Runnable {
 				}else {
 					for (ClientThread clientThread : Server.clients) {
 						if (!clientThread.equals(this)) {
+							GUI.controller.chat_names.add(clientThread.socket.getInetAddress().toString());
 							clientThread.send(input);
 							System.out.println(input + " sent to " + clientThread.socket.getInetAddress());
 						}
