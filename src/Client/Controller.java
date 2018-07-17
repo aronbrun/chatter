@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import java.awt.event.MouseEvent;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -44,7 +45,7 @@ public class Controller implements Initializable {
 	@FXML
 	public TabPane chats;
 	public int i =0;
-
+	private HashMap<Integer, String> ipchat = new HashMap<Integer, String>();
 	public  ObservableList<String> items_get =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_send =FXCollections.observableArrayList ();
 	public String ipsend = "";
@@ -59,11 +60,12 @@ public class Controller implements Initializable {
 
 		list_names.setOnMouseClicked(event ->{
 			try {
-				if(!ipsend.equals(list_names.getSelectionModel().getSelectedItem().toString())){
+				if(ipchat.containsValue(ipsend)){
 					chats.getSelectionModel().select(i);
 					i++;
 				}
 				ipsend = list_names.getSelectionModel().getSelectedItem().toString();
+				ipchat.put(i - 1, ipsend);
 			}catch (NullPointerException e){
 			}
 				});

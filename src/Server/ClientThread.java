@@ -50,7 +50,6 @@ public class ClientThread implements Runnable {
 					inputparts = input.split(":");
 					input = inputparts[0];
 					chattotake = inputparts[2];
-					System.out.println(chattotake);
 					if(!inputparts[1].equals("")){
 						iptosend = inputparts[1];
 					}else{
