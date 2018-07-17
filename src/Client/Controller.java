@@ -33,15 +33,13 @@ public class Controller implements Initializable {
 	public ListView list_send;
 	public  ObservableList<String> items_get =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_send =FXCollections.observableArrayList ();
-	public  ObservableList<String> chat_names =FXCollections.observableArrayList ();
 	public String ipsend = "";
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	    GUI.controller = this;
-
-	    list_names.setItems(chat_names);
 		list_names.setOnMouseClicked(event ->{
 			ipsend = list_names.getSelectionModel().getSelectedItem().toString();
+			System.out.println(ipsend);
 				});
 		btn_send.setOnAction(event -> {
 			items_send.add(send_text.getText());

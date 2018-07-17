@@ -1,9 +1,15 @@
 package Client;
 
+import com.jfoenix.controls.JFXListView;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import javax.swing.*;
 import java.io.*;
 import java.net.ConnectException;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class Client implements Runnable
 {
@@ -31,15 +37,33 @@ public class Client implements Runnable
             while (true) {
                 String message = null;
                 try {
-                    message = (String) din.readObject();
+                    Object obj = din.readObject();
+                    if (obj instanceof ArrayList) {
+                        ArrayList<String> rawList = (ArrayList<String>) obj;
+                        ObservableList<String> list = FXCollections.observableArrayList(rawList);
+                        System.out.println(rawList + " ||| " + list);
+                        Platform.runLater(() -> {
+                                    GUI.controller.list_names.setItems(list);
+                                    GUI.controller.list_names.refresh();
+                        });
+                        // GUI.controller = null;
+                        continue;
+                    } else if (obj instanceof String) {
+                        message = (String) obj;
+                    } else {
+                        continue;
+                    }
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
                 if(GUI.controller != null)
                 {
-                    GUI.controller.items_get.add(message);
-                    GUI.controller.list_get.setItems(GUI.controller.items_get);
-                    GUI.controller.items_send.add("\n");
+                    final String finalMessage = message;
+                    Platform.runLater(() -> {
+                        GUI.controller.items_get.add(finalMessage);
+                        GUI.controller.list_get.setItems(GUI.controller.items_get);
+                        GUI.controller.items_send.add("\n");
+                    });
                 }
             }
         }
