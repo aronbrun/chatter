@@ -28,9 +28,6 @@ public class Client implements Runnable
     {
         try
         {
-            GUI.controller.list_names.getSelectionModel().select(1);
-            GUI.controller.chat_names.add(socket.getInetAddress().toString());
-            GUI.controller.list_names.setItems(GUI.controller.chat_names);
             while (true) {
                 String message = null;
                 try {
