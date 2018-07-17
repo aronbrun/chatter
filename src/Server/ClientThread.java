@@ -45,9 +45,6 @@ public class ClientThread implements Runnable {
 				}
 
 				// Send to other clients
-				if(GUI.controller.ipsend != null){
-					send(GUI.controller.ipsend);
-				}else {
 					for (ClientThread clientThread : Server.clients) {
 						if (!clientThread.equals(this)) {
 							GUI.controller.chat_names.add(clientThread.socket.getInetAddress().toString());
@@ -55,7 +52,7 @@ public class ClientThread implements Runnable {
 							System.out.println(input + " sent to " + clientThread.socket.getInetAddress());
 						}
 					}
-				}
+
 			}
 		} catch (SocketException e) {
 			Server.clients.remove(this);
