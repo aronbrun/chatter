@@ -1,8 +1,10 @@
 package Client;
 
+import Server.Server;
 import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -12,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -31,16 +34,20 @@ public class Controller implements Initializable {
 	public  ObservableList<String> items_get =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_send =FXCollections.observableArrayList ();
 	public  ObservableList<String> chat_names =FXCollections.observableArrayList ();
+	public String ipsend = "";
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
 	    GUI.controller = this;
 
+		list_names.setOnMouseClicked(event ->{
+			ipsend = list_names.getSelectionModel().getSelectedItem().toString();
+				});
 		btn_send.setOnAction(event -> {
 			items_send.add(send_text.getText());
 			list_send.setItems(items_send);
 			items_get.add("\n");
 			Client.send(send_text.getText());
+			send_text.clear();
 		});
 	}
 }

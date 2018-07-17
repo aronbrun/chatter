@@ -1,5 +1,7 @@
 package Server;
 
+import Client.GUI;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -43,10 +45,14 @@ public class ClientThread implements Runnable {
 				}
 
 				// Send to other clients
-				for (ClientThread clientThread : Server.clients) {
-					if (!clientThread.equals(this)) {
-						clientThread.send(input);
-						System.out.println(input + " sent to " + clientThread.socket.getInetAddress());
+				if(GUI.controller.ipsend != null){
+					send(GUI.controller.ipsend);
+				}else {
+					for (ClientThread clientThread : Server.clients) {
+						if (!clientThread.equals(this)) {
+							clientThread.send(input);
+							System.out.println(input + " sent to " + clientThread.socket.getInetAddress());
+						}
 					}
 				}
 			}
