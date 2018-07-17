@@ -45,7 +45,7 @@ public class Controller implements Initializable {
 	@FXML
 	public TabPane chats;
 	public int chat =0;
-	private HashMap<Integer, String> ipchat = new HashMap<Integer, String>();
+	private HashMap<Integer, String> ipchat = new HashMap<>();
 	public  ObservableList<String> items_get =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_send =FXCollections.observableArrayList ();
 	public String ipsend = "";
@@ -71,10 +71,11 @@ public class Controller implements Initializable {
 					for(int i =0; i < ipchat.size(); i++){
 						if(ipchat.get(i).equals(ipsend)){
 							System.out.println("match");
-							chat = i + 2;
+							chat = i + 1;
 						}
 					}
 				}
+
 			}catch (NullPointerException e){
 			}
 				});
