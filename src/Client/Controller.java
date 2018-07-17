@@ -72,6 +72,7 @@ public class Controller implements Initializable {
 						if(ipchat.get(i).equals(ipsend)){
 							System.out.println("match");
 							chat = i + 1;
+							chats.getSelectionModel().select(chat);
 						}
 					}
 				}
