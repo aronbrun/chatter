@@ -44,7 +44,7 @@ public class Controller implements Initializable {
 	public ListView list_send_4;
 	@FXML
 	public TabPane chats;
-	public int i =0;
+	public int chat =0;
 	private HashMap<Integer, String> ipchat = new HashMap<Integer, String>();
 	public  ObservableList<String> items_get =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_send =FXCollections.observableArrayList ();
@@ -60,12 +60,18 @@ public class Controller implements Initializable {
 
 		list_names.setOnMouseClicked(event ->{
 			try {
-				if(ipchat.containsValue(ipsend)){
-					chats.getSelectionModel().select(i);
-					i++;
+				if(!ipchat.containsValue(ipsend)){
+					chats.getSelectionModel().select(chat);
+					chat++;
+				}else{
+					for(int i =0; i < ipchat.size(); i++){
+						if(ipchat.get(i).equals(ipsend)){
+							chat = i + 1;
+						}
+					}
 				}
 				ipsend = list_names.getSelectionModel().getSelectedItem().toString();
-				ipchat.put(i - 1, ipsend);
+				ipchat.put(chat - 1, ipsend);
 			}catch (NullPointerException e){
 			}
 				});
@@ -73,7 +79,7 @@ public class Controller implements Initializable {
 			items_send.add(send_text.getText());
 			list_send_1.setItems(items_send);
 			items_get.add("\n");
-			Client.send(send_text.getText() + ":" + ipsend + ":" + (i - 1));
+			Client.send(send_text.getText() + ":" + ipsend + ":" + (chat - 1));
 			send_text.clear();
 		});
 	}
