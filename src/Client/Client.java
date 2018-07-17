@@ -60,7 +60,7 @@ public class Client implements Runnable
                     final String finalMessage = message;
                     Platform.runLater(() -> {
                         GUI.controller.items_get.add(finalMessage);
-                        GUI.controller.list_get.setItems(GUI.controller.items_get);
+                        GUI.controller.list_get_1.setItems(GUI.controller.items_get);
                         GUI.controller.items_send.add("\n");
                     });
                 }

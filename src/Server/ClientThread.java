@@ -15,6 +15,7 @@ public class ClientThread implements Runnable {
 	private ObjectInputStream din;
 	private String input;
 	private String iptosend;
+	private String chattotake;
 	private String[] inputparts;
 
 	public Socket getSocket() {
@@ -48,7 +49,9 @@ public class ClientThread implements Runnable {
 					input = (String) din.readObject();
 					inputparts = input.split(":");
 					input = inputparts[0];
-					if(inputparts.length == 2){
+					chattotake = inputparts[2];
+					System.out.println(chattotake);
+					if(!inputparts[1].equals("")){
 						iptosend = inputparts[1];
 					}else{
 						iptosend = "";
@@ -70,7 +73,6 @@ public class ClientThread implements Runnable {
 							}
 						}
 					}
-
 			}
 		} catch (SocketException e) {
 			Server.removeClient(this);
