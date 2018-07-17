@@ -59,9 +59,9 @@ public class Client implements Runnable
                 {
                     final String finalMessage = message;
                     Platform.runLater(() -> {
-                        GUI.controller.items_get.add(finalMessage);
-                        GUI.controller.list_get_1.setItems(GUI.controller.items_get);
-                        GUI.controller.items_send.add("\n");
+                        GUI.controller.tabs.get(GUI.controller.chat).getitems.add(finalMessage);
+                        GUI.controller.tabs.get(GUI.controller.chat).getfield.setItems(GUI.controller.tabs.get(GUI.controller.chat).getitems);
+                        GUI.controller.tabs.get(GUI.controller.chat).senditems.add("\n");
                     });
                 }
             }
@@ -85,7 +85,7 @@ public class Client implements Runnable
 
     public static void send(String text) {
         try {
-            dout.writeObject(text);
+            dout.writeObject((String) text);
         } catch (IOException e) {
             e.printStackTrace();
         }

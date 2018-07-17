@@ -44,18 +44,25 @@ public class Controller implements Initializable {
 	public ListView list_send_4;
 	@FXML
 	public TabPane chats;
+
+	public  ObservableList<String> items_get_4 =FXCollections.observableArrayList ();
+	public  ObservableList<String> items_send_4 =FXCollections.observableArrayList ();
+	public  ObservableList<String> items_get_1 =FXCollections.observableArrayList ();
+	public  ObservableList<String> items_send_1=FXCollections.observableArrayList ();
+	public  ObservableList<String> items_get_2 =FXCollections.observableArrayList ();
+	public  ObservableList<String> items_send_2 =FXCollections.observableArrayList ();
+	public  ObservableList<String> items_get_3 =FXCollections.observableArrayList ();
+	public  ObservableList<String> items_send_3 =FXCollections.observableArrayList ();
 	public int chat =0;
+	public ArrayList<Tab> tabs = new ArrayList<Tab>();
 	private HashMap<Integer, String> ipchat = new HashMap<>();
-	public  ObservableList<String> items_get =FXCollections.observableArrayList ();
-	public  ObservableList<String> items_send =FXCollections.observableArrayList ();
 	public String ipsend = "";
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		ArrayList<Tab> tabs = new ArrayList<Tab>();
-		tabs.add(new Tab("Chat1", "list_get_1", "list_send_1"));
-		tabs.add(new Tab("Chat2", "list_get_2", "list_send_2"));
-		tabs.add(new Tab("Chat3", "list_get_3", "list_send_3"));
-		tabs.add(new Tab("Chat4", "list_get_4", "list_send_4"));
+		tabs.add(new Tab("Chat1", list_get_1, list_send_1, items_get_1, items_send_1));
+		tabs.add(new Tab("Chat2", list_get_2, list_send_2, items_get_2, items_send_2));
+		tabs.add(new Tab("Chat3", list_get_3, list_send_3, items_get_3, items_send_3));
+		tabs.add(new Tab("Chat4", list_get_4, list_send_4, items_get_4, items_send_4));
 	    GUI.controller = this;
 
 		list_names.setOnMouseClicked(event ->{
@@ -81,9 +88,9 @@ public class Controller implements Initializable {
 			}
 				});
 		btn_send.setOnAction(event -> {
-			items_send.add(send_text.getText());
-			list_send_1.setItems(items_send);
-			items_get.add("\n");
+			tabs.get(chat).senditems.add(send_text.getText());
+			tabs.get(chat).sendfield.setItems(tabs.get(chat).senditems);
+			tabs.get(chat).getitems.add("\n");
 			Client.send(send_text.getText() + ":" + ipsend + ":" + (chat - 1));
 			send_text.clear();
 		});
