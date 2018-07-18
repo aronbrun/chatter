@@ -61,7 +61,7 @@ public class ClientThread implements Runnable {
 				}
 
 				//sending to one client
-				if(!iptosend.equals("") || !iptosend.equals("groupchat")){
+				if(!iptosend.equals("") && !iptosend.equals("groupchat")){
 				for(int i = 0; i < Server.getClientList().size(); i++){
 					if(Server.getClientList().get(i).getSocket().getInetAddress().toString().equals(iptosend)){
 						Server.getClientList().get(i).send(input);
