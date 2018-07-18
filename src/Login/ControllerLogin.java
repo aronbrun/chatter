@@ -23,7 +23,9 @@ public class ControllerLogin implements Initializable
         btnContinue.setOnAction(event -> {
 
             try {
+            	//getting username from TextField
 	            username = tfName.getText();
+	            //starting new GUI
 	            GUI g = new GUI();
 	            g.start(s);
             }

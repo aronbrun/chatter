@@ -45,10 +45,9 @@ public class ClientThread implements Runnable {
 		try {
 			while (true) {
 				try {
-					//get input
+					//getting input
 					input = (String) din.readObject();
-					//split input into parts
-
+					//splitting input into parts
 					inputparts = input.split(":");
 					input = inputparts[0];
 					chattotake = inputparts[2];
@@ -61,8 +60,8 @@ public class ClientThread implements Runnable {
 					e.printStackTrace();
 				}
 
-				//send to one client
-				if(iptosend != ""){
+				//sending to one client
+				if(!iptosend.equals("") || !iptosend.equals("groupchat")){
 				for(int i = 0; i < Server.getClientList().size(); i++){
 					if(Server.getClientList().get(i).getSocket().getInetAddress().toString().equals(iptosend)){
 						Server.getClientList().get(i).send(input);

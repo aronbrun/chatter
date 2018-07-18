@@ -18,17 +18,19 @@ public class Server
 	private static final HashMap<ClientThread, String> clientz = new HashMap<ClientThread, String>();
 	public static void main(String[] args) {
 		try {
+			//trying to start server
 			ServerSocket s = new ServerSocket(8080);
 			System.out.println("----Server gestartet----");
 
 			while (true) {
+				//always accept clients
 				Socket client = s.accept();
 				if (client != null) {
-
+					//starting new clienThread if client is not null
 					ClientThread ct = new ClientThread(client);
 					clientz.put(ct, client.getInetAddress().toString());
 					new Thread(ct).start();
-
+					//sending clientList to Client
 					sendClientList();
 				}
 			}

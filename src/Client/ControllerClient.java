@@ -4,6 +4,8 @@ import Login.ControllerLogin;
 import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -11,12 +13,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class ControllerClient implements Initializable {
+	//creating variables
 	@FXML
 	public JFXListView list_names;
 	@FXML
@@ -48,6 +53,7 @@ public class ControllerClient implements Initializable {
 	public String clientname;
 	public String clientip;
 
+	//making Observablelists for the chats
 	public  ObservableList<String> items_get_4 =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_send_4 =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_get_1 =FXCollections.observableArrayList ();
@@ -61,7 +67,7 @@ public class ControllerClient implements Initializable {
 	private HashMap<Integer, String> ipchat = new HashMap<>();
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		chats.getSelectionModel().selectFirst();
+		//setting up chats to chat in
 		GUI.controllerClient = this;
 		tabs.add(new Tab("Chat1", list_get_1, list_send_1, items_get_1, items_send_1));
 		tabs.add(new Tab("Chat2", list_get_2, list_send_2, items_get_2, items_send_2));
@@ -73,17 +79,21 @@ public class ControllerClient implements Initializable {
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
+		//sending clinetname and ip to database
 		clientname = ControllerLogin.username;
 		clientip = inetAddress.getHostAddress();
-		System.out.println("name: "  + clientname + " ip: " + clientip);
+
+<<<<<<< HEAD
 
 
-
+=======
+		//choosing chat to send text on
+>>>>>>> 1e17c0649b32404335216d3ae8790b85b081d538
 		list_names.setOnMouseClicked(event ->{
 			try {
 				ipsend = list_names.getSelectionModel().getSelectedItem().toString();
 				if(ipsend.equals("groupchat")){
-					chats.getSelectionModel();
+					chats.getSelectionModel().select(chat);
 				}
 				if(!ipchat.containsValue(ipsend)){
 					chats.getSelectionModel().select(chat);
@@ -101,12 +111,20 @@ public class ControllerClient implements Initializable {
 			}catch (NullPointerException e){
 			}
 				});
-		btn_send.setOnAction(event -> {
-			tabs.get(chat).senditems.add(send_text.getText());
-			tabs.get(chat).sendfield.setItems(tabs.get(chat).senditems);
-			tabs.get(chat).getitems.add("\n");
-			Client.send(send_text.getText() + ":" + ipsend + ":" + (chat - 1));
-			send_text.clear();
+		//setting listeners to send to Server
+		send_text.setOnAction(event -> {
+			sendtext();
 		});
+		btn_send.setOnAction(event -> {
+			sendtext();
+		});
+	}
+	//method to send to Server
+	public void sendtext(){
+		tabs.get(chat).senditems.add(send_text.getText());
+		tabs.get(chat).sendfield.setItems(tabs.get(chat).senditems);
+		tabs.get(chat).getitems.add("\n");
+		Client.send(send_text.getText() + ":" + ipsend + ":" + (chat - 1));
+		send_text.clear();
 	}
 }
