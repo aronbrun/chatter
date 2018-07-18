@@ -4,18 +4,20 @@ import Login.ControllerLogin;
 import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.net.*;
+import java.net.InetAddress;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -120,6 +122,14 @@ public class ControllerClient implements Initializable {
 			}catch (NullPointerException e){
 			}
 				});
+
+		// shift enter -> tab
+		send_text.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.ENTER && event.isShiftDown()) {
+				send_text.appendText("hallo");
+			}
+		});
+
 		//setting listeners to send to Server
 		send_text.setOnAction(event -> {
 			sendtext();
