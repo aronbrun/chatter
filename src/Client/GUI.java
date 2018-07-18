@@ -22,7 +22,9 @@ public class GUI extends Application {
 			}
 		});
 		primaryStage.setTitle("Chatter");
-		Scene scene = new Scene(root, 700, 700);
+		Scene scene = new Scene(root, 1100, 700);
+		primaryStage.setMinHeight(400);
+        primaryStage.setMinWidth(600);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 
