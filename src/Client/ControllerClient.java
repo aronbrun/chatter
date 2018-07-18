@@ -1,5 +1,6 @@
 package Client;
 
+import Login.ControllerLogin;
 import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,6 +45,7 @@ public class ControllerClient implements Initializable {
 	public TabPane chats;
 	@FXML
 	public String ipsend = "";
+	public static InetAddress inetAddress;
 	public  ObservableList<String> items_get_4 =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_send_4 =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_get_1 =FXCollections.observableArrayList ();
@@ -88,10 +90,17 @@ public class ControllerClient implements Initializable {
 			}
 				});
 		btn_send.setOnAction(event -> {
+			try
+			{
+				inetAddress = InetAddress.getLocalHost();
+			} catch (UnknownHostException e)
+			{
+				e.printStackTrace();
+			}
 			tabs.get(chat).senditems.add(send_text.getText());
 			tabs.get(chat).sendfield.setItems(tabs.get(chat).senditems);
 			tabs.get(chat).getitems.add("\n");
-			Client.send(send_text.getText() + ":" + ipsend + ":" + (chat - 1));
+			Client.send(send_text.getText() + ":" + ipsend + ":" + (chat - 1) + ":" + ControllerLogin.username + ":" + inetAddress.getHostAddress().toString());
 			send_text.clear();
 		});
 	}
