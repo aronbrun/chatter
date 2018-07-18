@@ -32,6 +32,7 @@ public class GUI extends Application {
 		// Runs a new Client
 		Thread clientThread = new Thread(client);
 		clientThread.start();
+
 	}
 	public static void main(String args[])
 	{
