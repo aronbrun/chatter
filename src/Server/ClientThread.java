@@ -17,7 +17,6 @@ public class ClientThread implements Runnable {
 	private String[] inputparts;
 	private String ipfrom;
 	private PrintWriter writer;
-	private File f;
 	public Socket getSocket() {
 		return socket;
 	}
@@ -64,9 +63,9 @@ public class ClientThread implements Runnable {
 				iptosend = iptosend.replace("/", "");
 				ipfrom = ipfrom.replace("/", "");
 
-				f = new File("D:\\Work\\Source\\github\\src\\chatlogs\\" + ipfrom + "--" + iptosend + ".txt", "UTF-8");
-				System.out.println("D:\\Work\\Source\\github\\src\\chatlogs\\" + ipfrom + "--" + iptosend + ".txt");
+				File f = new File("D://Work//Source//github//src//chatlogs//" + ipfrom + "--" + iptosend + ".txt", "UTF-8");
 				if(!f.exists()){
+					f.getParentFile().mkdirs();
 					f.createNewFile();
 				}
 				FileWriter fw = new FileWriter(f,true);
