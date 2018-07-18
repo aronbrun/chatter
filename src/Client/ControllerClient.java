@@ -182,7 +182,7 @@ public class ControllerClient implements Initializable {
 			send_text.clear();
 		}
 	}
-	//method to validate ip from send_text
+	// method to validate ip from send_text
 	public static boolean validIP (String ipbefore) {
 
 		String[] parts = ipbefore.split(":");
