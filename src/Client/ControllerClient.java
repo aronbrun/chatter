@@ -45,6 +45,9 @@ public class ControllerClient implements Initializable {
 	public TabPane chats;
 	@FXML
 	public String ipsend = "";
+	public String clientname;
+	public String clientip;
+
 	public static InetAddress inetAddress;
 	public  ObservableList<String> items_get_4 =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_send_4 =FXCollections.observableArrayList ();
@@ -66,6 +69,9 @@ public class ControllerClient implements Initializable {
 		tabs.add(new Tab("Chat3", list_get_3, list_send_3, items_get_3, items_send_3));
 		tabs.add(new Tab("Chat4", list_get_4, list_send_4, items_get_4, items_send_4));
 
+		clientname = ControllerLogin.username;
+		clientip = inetAddress.getHostAddress();
+		System.out.println("name: "  + clientname + " ip: " + clientip);
 
 		list_names.setOnMouseClicked(event ->{
 			try {
@@ -100,7 +106,7 @@ public class ControllerClient implements Initializable {
 			tabs.get(chat).senditems.add(send_text.getText());
 			tabs.get(chat).sendfield.setItems(tabs.get(chat).senditems);
 			tabs.get(chat).getitems.add("\n");
-			Client.send(send_text.getText() + ":" + ipsend + ":" + (chat - 1) + ":" + ControllerLogin.username + ":" + inetAddress.getHostAddress().toString());
+			Client.send(send_text.getText() + ":" + ipsend + ":" + (chat - 1));
 			send_text.clear();
 		});
 	}

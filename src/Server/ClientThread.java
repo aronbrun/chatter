@@ -17,9 +17,6 @@ public class ClientThread implements Runnable {
 	private String iptosend;
 	private String chattotake;
 	private String[] inputparts;
-	private String clientname;
-	private String clientip;
-
 	public Socket getSocket() {
 		return socket;
 	}
@@ -55,9 +52,6 @@ public class ClientThread implements Runnable {
 					inputparts = input.split(":");
 					input = inputparts[0];
 					chattotake = inputparts[2];
-					clientname = inputparts[3];
-					clientip = inputparts[4];
-					System.out.println(clientname + "ip: " + clientip);
 					if(!inputparts[1].equals("")){
 						iptosend = inputparts[1];
 					}else{
@@ -66,6 +60,7 @@ public class ClientThread implements Runnable {
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}
+
 				//send to one client
 				if(iptosend != ""){
 				for(int i = 0; i < Server.getClientList().size(); i++){
