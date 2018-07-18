@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 public class GUI extends Application {
@@ -27,7 +28,6 @@ public class GUI extends Application {
         primaryStage.setMinWidth(600);
 		primaryStage.setScene(scene);
 		primaryStage.show();
-
 		// Connect to the Server
 		Client client = new Client("10.10.100.110", 8080);
 
