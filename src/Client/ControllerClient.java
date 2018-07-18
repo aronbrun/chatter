@@ -1,23 +1,21 @@
 package Client;
 
-import Server.Server;
 import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 
-import java.awt.event.MouseEvent;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class ControllerClient implements Initializable {
 	@FXML
 	public JFXListView list_names;
 	@FXML
@@ -44,7 +42,8 @@ public class Controller implements Initializable {
 	public ListView list_send_4;
 	@FXML
 	public TabPane chats;
-
+	@FXML
+	public String ipsend = "";
 	public  ObservableList<String> items_get_4 =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_send_4 =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_get_1 =FXCollections.observableArrayList ();
@@ -56,28 +55,25 @@ public class Controller implements Initializable {
 	public int chat =0;
 	public ArrayList<Tab> tabs = new ArrayList<Tab>();
 	private HashMap<Integer, String> ipchat = new HashMap<>();
-	public String ipsend = "";
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		GUI.controllerClient = this;
 		tabs.add(new Tab("Chat1", list_get_1, list_send_1, items_get_1, items_send_1));
 		tabs.add(new Tab("Chat2", list_get_2, list_send_2, items_get_2, items_send_2));
 		tabs.add(new Tab("Chat3", list_get_3, list_send_3, items_get_3, items_send_3));
 		tabs.add(new Tab("Chat4", list_get_4, list_send_4, items_get_4, items_send_4));
-	    GUI.controller = this;
+
 
 		list_names.setOnMouseClicked(event ->{
 			try {
 				ipsend = list_names.getSelectionModel().getSelectedItem().toString();
 				if(!ipchat.containsValue(ipsend)){
-					System.out.println("notin");
 					chats.getSelectionModel().select(chat);
 					chat++;
 					ipchat.put(chat - 1, ipsend);
 				}else{
-					System.out.println("size: " + ipchat.size());
 					for(int i =0; i < ipchat.size(); i++){
 						if(ipchat.get(i).equals(ipsend)){
-							System.out.println("match");
 							chat = i + 1;
 							chats.getSelectionModel().select(chat);
 						}
