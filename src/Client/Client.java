@@ -20,6 +20,7 @@ public class Client implements Runnable
 
     public Client(String ip, int port) {
         try {
+            //trying to create new Socket
             socket = new Socket(ip, port);
             din = new ObjectInputStream(socket.getInputStream());
             dout = new ObjectOutputStream(socket.getOutputStream());
@@ -38,10 +39,12 @@ public class Client implements Runnable
             while (true) {
                 String message = null;
                 try {
+                    //getting object from Server and deciding if it is String or ArrayList
                     Object obj = din.readObject();
                     if (obj instanceof ArrayList) {
                         ArrayList<String> rawList = (ArrayList<String>) obj;
                         ObservableList<String> list = FXCollections.observableArrayList(rawList);
+                        //adding groupchat to list
                         list.add("groupchat");
                         Platform.runLater(() -> {
                                     GUI.controllerClient.list_names.setItems(list);
