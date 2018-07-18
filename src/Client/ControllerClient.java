@@ -82,7 +82,7 @@ public class ControllerClient implements Initializable {
 		//sending clinetname and ip to database
 		clientname = ControllerLogin.username;
 		clientip = inetAddress.getHostAddress();
-		
+
 
 
 		//choosing chat to send text on
