@@ -1,5 +1,6 @@
 package Client;
 
+import Login.ControllerLogin;
 import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,6 +45,7 @@ public class ControllerClient implements Initializable {
 	public TabPane chats;
 	@FXML
 	public String ipsend = "";
+	public static InetAddress inetAddress;
 	public  ObservableList<String> items_get_4 =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_send_4 =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_get_1 =FXCollections.observableArrayList ();
@@ -57,7 +59,11 @@ public class ControllerClient implements Initializable {
 	private HashMap<Integer, String> ipchat = new HashMap<>();
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+<<<<<<< HEAD
 		chats.getSelectionModel().selectFirst();
+=======
+		System.out.println(ControllerLogin.username);
+>>>>>>> 1fff4429536ee469e236eaf0f051f03db525c232
 		GUI.controllerClient = this;
 		tabs.add(new Tab("Chat1", list_get_1, list_send_1, items_get_1, items_send_1));
 		tabs.add(new Tab("Chat2", list_get_2, list_send_2, items_get_2, items_send_2));
@@ -88,10 +94,17 @@ public class ControllerClient implements Initializable {
 			}
 				});
 		btn_send.setOnAction(event -> {
+			try
+			{
+				inetAddress = InetAddress.getLocalHost();
+			} catch (UnknownHostException e)
+			{
+				e.printStackTrace();
+			}
 			tabs.get(chat).senditems.add(send_text.getText());
 			tabs.get(chat).sendfield.setItems(tabs.get(chat).senditems);
 			tabs.get(chat).getitems.add("\n");
-			Client.send(send_text.getText() + ":" + ipsend + ":" + (chat - 1));
+			Client.send(send_text.getText() + ":" + ipsend + ":" + (chat - 1) + ":" + ControllerLogin.username + ":" + inetAddress.getHostAddress().toString());
 			send_text.clear();
 		});
 	}
