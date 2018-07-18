@@ -10,8 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class GUI extends Application {
-
-    public static ControllerClient controllerClient;
+	public static ControllerClient controllerClient = new ControllerClient();
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));

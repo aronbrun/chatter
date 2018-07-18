@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="pane" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.ControllerClient">
+   <children>
+      <JFXTextField fx:id="send_text" layoutX="233.0" layoutY="501.0" prefHeight="45.0" prefWidth="357.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="233.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="650.0" />
+      <JFXButton fx:id="btn_send" layoutX="590.0" layoutY="652.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="101.0" text="send" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="652.0" />
+      <JFXListView fx:id="list_names" prefHeight="700.0" prefWidth="223.0" />
+      <TabPane fx:id="chats" layoutX="223.0" layoutY="-29.0" prefHeight="669.0" prefWidth="478.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="chat1" text="chat1">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="list_get_1" prefHeight="640.0" prefWidth="242.0" />
+                        <ListView fx:id="list_send_1" layoutX="242.0" prefHeight="640.0" prefWidth="230.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="chat2" text="chat2">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="list_get_2" prefHeight="640.0" prefWidth="242.0" />
+                        <ListView fx:id="list_send_2" layoutX="242.0" prefHeight="640.0" prefWidth="230.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="chat3" text="chat3">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="list_get_3" prefHeight="640.0" prefWidth="242.0" />
+                        <ListView fx:id="list_send_3" layoutX="242.0" prefHeight="640.0" prefWidth="230.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="chat4" text="chat4">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="list_get_4" prefHeight="640.0" prefWidth="242.0" />
+                        <ListView fx:id="list_send_4" layoutX="242.0" prefHeight="640.0" prefWidth="230.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

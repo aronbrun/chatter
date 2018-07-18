@@ -1,5 +1,6 @@
 package Client;
 
+import Login.Login;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,6 +10,7 @@ import java.io.*;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.util.ArrayList;
+import Login.ControllerLogin;
 
 public class Client implements Runnable
 {
@@ -40,6 +42,7 @@ public class Client implements Runnable
                     if (obj instanceof ArrayList) {
                         ArrayList<String> rawList = (ArrayList<String>) obj;
                         ObservableList<String> list = FXCollections.observableArrayList(rawList);
+                        System.out.println(ControllerLogin.username);
                         Platform.runLater(() -> {
                                     GUI.controllerClient.list_names.setItems(list);
                                     GUI.controllerClient.list_names.refresh();

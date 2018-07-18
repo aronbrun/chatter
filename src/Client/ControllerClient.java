@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 
@@ -41,7 +42,8 @@ public class ControllerClient implements Initializable {
 	public ListView list_send_4;
 	@FXML
 	public TabPane chats;
-
+	@FXML
+	public String ipsend = "";
 	public  ObservableList<String> items_get_4 =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_send_4 =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_get_1 =FXCollections.observableArrayList ();
@@ -53,14 +55,14 @@ public class ControllerClient implements Initializable {
 	public int chat =0;
 	public ArrayList<Tab> tabs = new ArrayList<Tab>();
 	private HashMap<Integer, String> ipchat = new HashMap<>();
-	public String ipsend = "";
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		GUI.controllerClient = this;
 		tabs.add(new Tab("Chat1", list_get_1, list_send_1, items_get_1, items_send_1));
 		tabs.add(new Tab("Chat2", list_get_2, list_send_2, items_get_2, items_send_2));
 		tabs.add(new Tab("Chat3", list_get_3, list_send_3, items_get_3, items_send_3));
 		tabs.add(new Tab("Chat4", list_get_4, list_send_4, items_get_4, items_send_4));
-	    GUI.controllerClient = this;
+
 
 		list_names.setOnMouseClicked(event ->{
 			try {
