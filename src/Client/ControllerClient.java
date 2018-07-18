@@ -77,6 +77,8 @@ public class ControllerClient implements Initializable {
 		clientip = inetAddress.getHostAddress();
 		System.out.println("name: "  + clientname + " ip: " + clientip);
 
+
+
 		list_names.setOnMouseClicked(event ->{
 			try {
 				ipsend = list_names.getSelectionModel().getSelectedItem().toString();
