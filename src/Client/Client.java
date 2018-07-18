@@ -46,6 +46,7 @@ public class Client implements Runnable
                         ObservableList<String> list = FXCollections.observableArrayList(rawList);
                         //adding groupchat to list
                         list.add("groupchat");
+                        list.remove("/" + GUI.controllerClient.clientip);
                         Platform.runLater(() -> {
                                     GUI.controllerClient.list_names.setItems(list);
                                     GUI.controllerClient.list_names.refresh();

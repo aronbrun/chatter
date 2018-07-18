@@ -130,10 +130,47 @@ public class ControllerClient implements Initializable {
 	}
 	//method to send to Server
 	public void sendtext(){
-		tabs.get(chat).senditems.add(send_text.getText());
-		tabs.get(chat).sendfield.setItems(tabs.get(chat).senditems);
-		tabs.get(chat).getitems.add("\n");
-		Client.send(send_text.getText() + ":" + ipsend + ":" + (chat - 1));
-		send_text.clear();
+		if(send_text.getText().equals("") || validIP(send_text.getText()) == true){
+			send_text.clear();
+		}else {
+			tabs.get(chat).senditems.add(send_text.getText());
+			tabs.get(chat).sendfield.setItems(tabs.get(chat).senditems);
+			tabs.get(chat).getitems.add("\n");
+			Client.send(send_text.getText() + ":" + ipsend + ":" + (chat - 1));
+			send_text.clear();
+		}
+	}
+	//method to validate ip from send_text
+	public static boolean validIP (String ipbefore) {
+
+		String[] parts = ipbefore.split(":");
+		if(parts.length > 1){
+			ipbefore = parts[1];
+			ipbefore = ipbefore.replace("/", "");
+		}
+		try {
+			if ( ipbefore == null || ipbefore.isEmpty() ) {
+				return false;
+			}
+
+			String[] partsa = ipbefore.split( "\\." );
+			if ( partsa.length != 4 ) {
+				return false;
+			}
+
+			for ( String s : partsa ) {
+				int i = Integer.parseInt( s );
+				if ( (i < 0) || (i > 255) ) {
+					return false;
+				}
+			}
+			if ( ipbefore.endsWith(".") ) {
+				return false;
+			}
+
+			return true;
+		} catch (NumberFormatException nfe) {
+			return false;
+		}
 	}
 }
