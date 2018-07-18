@@ -75,6 +75,26 @@
                   </AnchorPane>
                </content>
             </Tab>
+            <Tab fx:id="chat5" text="chat5">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="list_get_5" prefHeight="640.0" prefWidth="242.0" />
+                        <ListView fx:id="list_send_5" layoutX="242.0" prefHeight="640.0" prefWidth="230.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="chat6" text="chat6">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="list_get_6" prefHeight="640.0" prefWidth="242.0" />
+                        <ListView fx:id="list_send_6" layoutX="242.0" prefHeight="640.0" prefWidth="230.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
    </children>

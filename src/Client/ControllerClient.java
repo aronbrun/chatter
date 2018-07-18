@@ -79,7 +79,6 @@ public class ControllerClient implements Initializable {
 	private HashMap<Integer, String> ipchat = new HashMap<>();
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		chats.getSelectionModel().selectFirst();
 		//setting up chats to chat in
 		GUI.controllerClient = this;
 		tabs.add(new Tab("Chat1", list_get_1, list_send_1, items_get_1, items_send_1));
@@ -97,8 +96,6 @@ public class ControllerClient implements Initializable {
 		//sending clinetname and ip to database
 		clientname = ControllerLogin.username;
 		clientip = inetAddress.getHostAddress();
-
-
 
 		//choosing chat to send text on
 		list_names.setOnMouseClicked(event ->{
