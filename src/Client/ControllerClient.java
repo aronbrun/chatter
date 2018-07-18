@@ -92,12 +92,44 @@ public class ControllerClient implements Initializable {
 		InetAddress inetAddress = null;
 		try {
 			inetAddress = InetAddress.getLocalHost();
-		} catch (UnknownHostException e) {
+		} catch (UnknownHostException e) {	
 			e.printStackTrace();
 		}
 		//sending clinetname and ip to database
 		clientname = ControllerLogin.username;
 		clientip = inetAddress.getHostAddress();
+
+		list_names.setFocusTraversable(false);
+
+		list_get_1.setMouseTransparent( true );
+		list_get_1.setFocusTraversable( false );
+		list_send_1.setMouseTransparent( true );
+		list_send_1.setFocusTraversable( false );
+
+		list_get_2.setMouseTransparent( true );
+		list_get_2.setFocusTraversable( false );
+		list_send_2.setMouseTransparent( true );
+		list_send_2.setFocusTraversable( false );
+
+		list_get_6.setMouseTransparent( true );
+		list_get_6.setFocusTraversable( false );
+		list_send_6.setMouseTransparent( true );
+		list_send_6.setFocusTraversable( false );
+
+		list_get_3.setMouseTransparent( true );
+		list_get_3.setFocusTraversable( false );
+		list_send_3.setMouseTransparent( true );
+		list_send_3.setFocusTraversable( false );
+
+		list_get_4.setMouseTransparent( true );
+		list_get_4.setFocusTraversable( false );
+		list_send_4.setMouseTransparent( true );
+		list_send_4.setFocusTraversable( false );
+
+		list_get_5.setMouseTransparent( true );
+		list_get_5.setFocusTraversable( false );
+		list_send_5.setMouseTransparent( true );
+		list_send_5.setFocusTraversable( false );
 
 		//choosing chat to send text on
 		list_names.setOnMouseClicked(event ->{
