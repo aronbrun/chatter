@@ -7,10 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -27,7 +24,7 @@ public class ControllerClient implements Initializable {
 	@FXML
 	public JFXListView list_names;
 	@FXML
-	public TextField send_text;
+	public TextArea send_text;
 	@FXML
 	public Button btn_send;
 	@FXML
@@ -158,14 +155,17 @@ public class ControllerClient implements Initializable {
 		// shift enter -> tab
 		send_text.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.ENTER && event.isShiftDown()) {
-				send_text.appendText("hallo");
+				System.out.println("shift");
+				send_text.appendText("\n");
+			}
+			else if (event.getCode() == KeyCode.ENTER) {
+				System.out.println("send");
+				sendtext();
+				send_text.setText("");
 			}
 		});
 
 		//setting listeners to send to Server
-		send_text.setOnAction(event -> {
-			sendtext();
-		});
 		btn_send.setOnAction(event -> {
 			sendtext();
 		});
