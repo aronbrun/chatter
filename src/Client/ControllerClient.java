@@ -82,13 +82,10 @@ public class ControllerClient implements Initializable {
 		//sending clinetname and ip to database
 		clientname = ControllerLogin.username;
 		clientip = inetAddress.getHostAddress();
+		
 
-<<<<<<< HEAD
 
-
-=======
 		//choosing chat to send text on
->>>>>>> 1e17c0649b32404335216d3ae8790b85b081d538
 		list_names.setOnMouseClicked(event ->{
 			try {
 				ipsend = list_names.getSelectionModel().getSelectedItem().toString();
