@@ -57,6 +57,7 @@ public class ControllerClient implements Initializable {
 	private HashMap<Integer, String> ipchat = new HashMap<>();
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		chats.getSelectionModel().selectFirst();
 		GUI.controllerClient = this;
 		tabs.add(new Tab("Chat1", list_get_1, list_send_1, items_get_1, items_send_1));
 		tabs.add(new Tab("Chat2", list_get_2, list_send_2, items_get_2, items_send_2));
@@ -67,6 +68,9 @@ public class ControllerClient implements Initializable {
 		list_names.setOnMouseClicked(event ->{
 			try {
 				ipsend = list_names.getSelectionModel().getSelectedItem().toString();
+				if(ipsend.equals("groupchat")){
+					chats.getSelectionModel().selec;
+				}
 				if(!ipchat.containsValue(ipsend)){
 					chats.getSelectionModel().select(chat);
 					chat++;
