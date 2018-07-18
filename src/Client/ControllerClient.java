@@ -47,6 +47,14 @@ public class ControllerClient implements Initializable {
 	@FXML
 	public ListView list_send_4;
 	@FXML
+	public ListView list_get_5;
+	@FXML
+	public ListView list_send_5;
+	@FXML
+	public ListView list_get_6;
+	@FXML
+	public ListView list_send_6;
+	@FXML
 	public TabPane chats;
 	@FXML
 	public String ipsend = "";
@@ -62,17 +70,24 @@ public class ControllerClient implements Initializable {
 	public  ObservableList<String> items_send_2 =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_get_3 =FXCollections.observableArrayList ();
 	public  ObservableList<String> items_send_3 =FXCollections.observableArrayList ();
+	public  ObservableList<String> items_get_5 =FXCollections.observableArrayList ();
+	public  ObservableList<String> items_send_5 =FXCollections.observableArrayList ();
+	public  ObservableList<String> items_get_6 =FXCollections.observableArrayList ();
+	public  ObservableList<String> items_send_6 =FXCollections.observableArrayList ();
 	public int chat =0;
 	public ArrayList<Tab> tabs = new ArrayList<Tab>();
 	private HashMap<Integer, String> ipchat = new HashMap<>();
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		chats.getSelectionModel().selectFirst();
 		//setting up chats to chat in
 		GUI.controllerClient = this;
 		tabs.add(new Tab("Chat1", list_get_1, list_send_1, items_get_1, items_send_1));
 		tabs.add(new Tab("Chat2", list_get_2, list_send_2, items_get_2, items_send_2));
 		tabs.add(new Tab("Chat3", list_get_3, list_send_3, items_get_3, items_send_3));
 		tabs.add(new Tab("Chat4", list_get_4, list_send_4, items_get_4, items_send_4));
+		tabs.add(new Tab("Chat5", list_get_5, list_send_5, items_get_5, items_send_5));
+		tabs.add(new Tab("Chat6", list_get_6, list_send_6, items_get_6, items_send_6));
 		InetAddress inetAddress = null;
 		try {
 			inetAddress = InetAddress.getLocalHost();
