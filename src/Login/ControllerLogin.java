@@ -32,8 +32,6 @@ public class ControllerLogin implements Initializable
             catch (Exception e) {
                 e.printStackTrace();
             }
-
-
         });
         }
 }
