@@ -130,10 +130,13 @@ public class ControllerClient implements Initializable {
 	}
 	//method to send to Server
 	public void sendtext(){
-		tabs.get(chat).senditems.add(send_text.getText());
-		tabs.get(chat).sendfield.setItems(tabs.get(chat).senditems);
-		tabs.get(chat).getitems.add("\n");
-		Client.send(send_text.getText() + ":" + ipsend + ":" + (chat - 1));
-		send_text.clear();
+		if(send_text.getText().equals("")){
+		}else {
+			tabs.get(chat).senditems.add(send_text.getText());
+			tabs.get(chat).sendfield.setItems(tabs.get(chat).senditems);
+			tabs.get(chat).getitems.add("\n");
+			Client.send(send_text.getText() + ":" + ipsend + ":" + (chat - 1));
+			send_text.clear();
+		}
 	}
 }
