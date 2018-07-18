@@ -42,6 +42,7 @@ public class Client implements Runnable
                     if (obj instanceof ArrayList) {
                         ArrayList<String> rawList = (ArrayList<String>) obj;
                         ObservableList<String> list = FXCollections.observableArrayList(rawList);
+                        list.add("groupchat");
                         System.out.println(ControllerLogin.username);
                         Platform.runLater(() -> {
                                     GUI.controllerClient.list_names.setItems(list);
