@@ -16,8 +16,13 @@ public class ClientThread implements Runnable {
 	private String chattotake;
 	private String[] inputparts;
 	private String ipfrom;
-	private String iptxt;
-	private PrintWriter writer;
+	private String ipto;
+	private String[] ipfromparts;
+	private String[] iptoparts;
+	private int iptoidentifier;
+	private int ipfromidentifier;
+	private String ipone;
+	private String iptwo;
 	public Socket getSocket() {
 		return socket;
 	}
@@ -60,10 +65,22 @@ public class ClientThread implements Runnable {
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}
+				//creating txt files on Server for chat course
 				ipfrom = Server.getsendip(this);
-				iptxt = iptosend.replace("/", "");
+				ipto = iptosend.replace("/", "");
 				ipfrom = ipfrom.replace("/", "");
-				String path = "D://Work//Source//github//src//chatlogs//" + ipfrom + "--" + iptxt + ".txt";
+				ipfromparts = ipfrom.split("\\.");
+				iptoparts = ipto.split("\\.");
+				ipfromidentifier = Integer.parseInt(ipfromparts[3]);
+				iptoidentifier = Integer.parseInt(iptoparts[3]);
+				if (ipfromidentifier > iptoidentifier) {
+					ipone = ipto;
+					iptwo = ipfrom;
+				}else{
+					ipone = ipfrom;
+					iptwo  = ipto;
+				}
+				String path = "D://Work//Source//github//src//chatlogs//" + ipone + "--" + iptwo + ".txt";
 				File f = new File(path);
 				if(!f.exists()){
 					f.createNewFile();
@@ -71,8 +88,8 @@ public class ClientThread implements Runnable {
 				FileWriter fw = new FileWriter(f,true);
 				BufferedWriter bw = new BufferedWriter(fw);
 				PrintWriter pw = new PrintWriter(bw);
-				pw.println("[" + input + "]:::::::::::"  + ipfrom + "---->" + iptxt);
-				System.out.println("[" + input + "] "  + ipfrom + "---->" + iptxt);
+				pw.println("[" + input + "]:::::::::::"  + ipfrom + "---->" + ipto);
+				System.out.println("[" + input + "]:::::::::::"  + ipfrom + "---->" + ipto);
 				pw.close();
 				//sending to one client
 				if(!iptosend.equals("") && !iptosend.equals("groupchat")){
