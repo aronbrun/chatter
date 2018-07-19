@@ -23,6 +23,7 @@ public class ClientThread implements Runnable {
 	private int ipfromidentifier;
 	private String ipone;
 	private String iptwo;
+	private String finalname;
 	public Socket getSocket() {
 		return socket;
 	}
@@ -71,16 +72,22 @@ public class ClientThread implements Runnable {
 				ipfrom = ipfrom.replace("/", "");
 				ipfromparts = ipfrom.split("\\.");
 				iptoparts = ipto.split("\\.");
-				ipfromidentifier = Integer.parseInt(ipfromparts[3]);
-				iptoidentifier = Integer.parseInt(iptoparts[3]);
-				if (ipfromidentifier > iptoidentifier) {
-					ipone = ipto;
-					iptwo = ipfrom;
-				}else{
-					ipone = ipfrom;
-					iptwo  = ipto;
+				if(!ipto.equals("groupchat")) {
+					ipfromidentifier = Integer.parseInt(ipfromparts[3]);
+					iptoidentifier = Integer.parseInt(iptoparts[3]);
+					if (ipfromidentifier > iptoidentifier) {
+						ipone = ipto;
+						iptwo = ipfrom;
+						finalname = ipone + "--" + iptwo;
+					} else {
+						ipone = ipfrom;
+						iptwo = ipto;
+						finalname = ipone + "--" + iptwo;
+					}
+				}else {
+						finalname = "groupchat";
 				}
-				String path = "D://Work//Source//github//src//chatlogs//" + ipone + "--" + iptwo + ".txt";
+				String path = "D://Work//Source//github//src//chatlogs//" + finalname + ".txt";
 				File f = new File(path);
 				if(!f.exists()){
 					f.createNewFile();
