@@ -16,6 +16,11 @@ public class Server
 {
 
 	private static final HashMap<ClientThread, String> clientz = new HashMap<ClientThread, String>();
+
+	/**
+	 * The main method of the application. Serves as an entry point
+	 * @param args Arguments for the application
+	 */
 	public static void main(String[] args) {
 		try {
 			//trying to start server
@@ -31,7 +36,6 @@ public class Server
 					clientz.put(ct, client.getInetAddress().toString());
 					new Thread(ct).start();
 					//sending clientList to Client
-					sendClientList();
 				}
 			}
 		} catch (IOException e) {
@@ -39,6 +43,14 @@ public class Server
 		}
 	}
 
+	public static void sendClientNameList() {
+
+	}
+
+	/**
+	 * @Depreceated use {@link #sendClientNameList()} instead
+	 */
+	@Deprecated
 	public static void sendClientList() {
 		// send new list to clients
 		ArrayList<String> ipList = getIPList();

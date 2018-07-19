@@ -1,6 +1,7 @@
 package Login;
 
 import Client.GUI;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -21,7 +22,6 @@ public class ControllerLogin implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         btnContinue.setOnAction(event -> {
-
             try {
             	//getting username from TextField
 	            username = tfName.getText();

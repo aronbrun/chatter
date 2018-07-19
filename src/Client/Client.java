@@ -58,7 +58,7 @@ public class Client implements Runnable
                         continue;
                     } else if (obj instanceof String) {
                         message = (String) obj;
-                    } else {
+                    }else {
                         continue;
                     }
                 } catch (ClassNotFoundException e) {

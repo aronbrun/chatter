@@ -9,7 +9,9 @@ import java.net.SocketException;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 
 public class ClientThread implements Runnable {
 	private Socket socket;
@@ -28,6 +30,7 @@ public class ClientThread implements Runnable {
 	private String ipone;
 	private String iptwo;
 	private String finalname;
+	private ArrayList<String> sendipname= new ArrayList<>();
 	public Socket getSocket() {
 		return socket;
 	}
@@ -51,18 +54,42 @@ public class ClientThread implements Runnable {
 		}
 	}
 
+
+
 	@Override
 	public void run() {
 		try {
+			//putting username and ip into database
 			input = (String) din.readObject();
 				ipfrom = Server.getsendip(this);
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con=DriverManager.getConnection(
 						"jdbc:mysql://localhost:3306/chatter","root","");
 				Statement stmt=con.createStatement();
-				stmt.execute("INSERT INTO login(name, ip) values('" + input +  "', '" + ipfrom + "')");
-				con.close();
+				for (int i =0; i < Server.getIPList().size(); i++) {
+				ResultSet rs = stmt.executeQuery("SELECT * FROM login");
 
+				boolean exists = false;
+				while (rs.next()) {
+					exists = rs.getString(3).equals(ipfrom);
+				}
+
+				if (!exists) {
+					stmt.execute("INSERT INTO login(name, ip) values('" + input +  "', '" + ipfrom + "')");
+				}
+			}
+				//sending all usernames and ips from database to clients
+			for (int i =0; i < Server.getIPList().size(); i++) {
+				ResultSet rs = stmt.executeQuery("SELECT * FROM login WHERE ip = '" + Server.getIPList().get(i) + "'");
+				while (rs.next()) {
+					sendipname.add(rs.getString(2) + ":" + rs.getString(3));
+				}
+			}
+			for (ClientThread clientThread : Server.getClientList()) {
+				clientThread.send(sendipname);
+			}
+
+			con.close();
 			while (true) {
 				try {
 					//getting input
