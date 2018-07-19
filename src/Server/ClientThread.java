@@ -63,7 +63,7 @@ public class ClientThread implements Runnable {
 				ipfrom = Server.getsendip(this);
 				iptxt = iptosend.replace("/", "");
 				ipfrom = ipfrom.replace("/", "");
-				String path = "D://Work//Source//github//src//chatlogs//" + ipfrom + "--" + iptosend + ".txt";
+				String path = "D://Work//Source//github//src//chatlogs//" + ipfrom + "--" + iptxt + ".txt";
 				File f = new File(path);
 				if(!f.exists()){
 					f.createNewFile();
@@ -71,8 +71,8 @@ public class ClientThread implements Runnable {
 				FileWriter fw = new FileWriter(f,true);
 				BufferedWriter bw = new BufferedWriter(fw);
 				PrintWriter pw = new PrintWriter(bw);
-				pw.println("[" + input + "]:::::::::::"  + ipfrom + "---->" + iptosend);
-				System.out.println("[" + input + "] "  + ipfrom + "---->" + iptosend);
+				pw.println("[" + input + "]:::::::::::"  + ipfrom + "---->" + iptxt);
+				System.out.println("[" + input + "] "  + ipfrom + "---->" + iptxt);
 				pw.close();
 				//sending to one client
 				if(!iptosend.equals("") && !iptosend.equals("groupchat")){
