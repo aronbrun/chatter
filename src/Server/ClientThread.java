@@ -6,6 +6,10 @@ import java.io.*;
 import java.lang.reflect.Field;
 import java.net.Socket;
 import java.net.SocketException;
+import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ClientThread implements Runnable {
 	private Socket socket;
@@ -50,6 +54,15 @@ public class ClientThread implements Runnable {
 	@Override
 	public void run() {
 		try {
+			input = (String) din.readObject();
+				ipfrom = Server.getsendip(this);
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection con=DriverManager.getConnection(
+						"jdbc:mysql://localhost:3306/chatter","root","");
+				Statement stmt=con.createStatement();
+				stmt.execute("INSERT INTO login(name, ip) values('" + input +  "', '" + ipfrom + "')");
+				con.close();
+
 			while (true) {
 				try {
 					//getting input
@@ -67,7 +80,6 @@ public class ClientThread implements Runnable {
 					e.printStackTrace();
 				}
 				//creating txt files on Server for chat course
-				ipfrom = Server.getsendip(this);
 				ipto = iptosend.replace("/", "");
 				ipfrom = ipfrom.replace("/", "");
 				ipfromparts = ipfrom.split("\\.");
@@ -95,8 +107,9 @@ public class ClientThread implements Runnable {
 				FileWriter fw = new FileWriter(f,true);
 				BufferedWriter bw = new BufferedWriter(fw);
 				PrintWriter pw = new PrintWriter(bw);
-				pw.println("[" + input + "]:::::::::::"  + ipfrom + "---->" + ipto);
-				System.out.println("[" + input + "]:::::::::::"  + ipfrom + "---->" + ipto);
+				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				Date date = new Date();
+				pw.println("MESSAGE: [" + input + "] SENT FROM: "  + ipfrom + " TO: " + ipto + " DATE AND TIME: " + dateFormat.format(date));
 				pw.close();
 				//sending to one client
 				if(!iptosend.equals("") && !iptosend.equals("groupchat")){

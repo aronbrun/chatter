@@ -1,7 +1,9 @@
 package Client;
 
 import Login.ControllerLogin;
+import Login.Login;
 import com.jfoenix.controls.JFXListView;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -87,7 +89,7 @@ public class ControllerClient implements Initializable {
 		InetAddress inetAddress = null;
 		try {
 			inetAddress = InetAddress.getLocalHost();
-		} catch (UnknownHostException e) {	
+		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
 		//sending clinetname and ip to database
@@ -125,7 +127,9 @@ public class ControllerClient implements Initializable {
 		list_get_5.setFocusTraversable( false );
 		list_send_5.setMouseTransparent( true );
 		list_send_5.setFocusTraversable( false );
-
+		Platform.runLater(() ->{
+			Client.send(ControllerLogin.username);
+		});
 		//choosing chat to send text on
 		list_names.setOnMouseClicked(event ->{
 			try {
@@ -153,11 +157,9 @@ public class ControllerClient implements Initializable {
 		// shift enter -> tab
 		send_text.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.ENTER && event.isShiftDown()) {
-				System.out.println("shift");
 				send_text.appendText("\n");
 			}
 			else if (event.getCode() == KeyCode.ENTER) {
-				System.out.println("send");
 				sendtext();
 				send_text.setText("");
 			}
