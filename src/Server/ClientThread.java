@@ -16,6 +16,7 @@ public class ClientThread implements Runnable {
 	private String chattotake;
 	private String[] inputparts;
 	private String ipfrom;
+	private String iptxt;
 	private PrintWriter writer;
 	public Socket getSocket() {
 		return socket;
@@ -60,7 +61,7 @@ public class ClientThread implements Runnable {
 					e.printStackTrace();
 				}
 				ipfrom = Server.getsendip(this);
-				iptosend = iptosend.replace("/", "");
+				iptxt = iptosend.replace("/", "");
 				ipfrom = ipfrom.replace("/", "");
 				String path = "D://Work//Source//github//src//chatlogs//" + ipfrom + "--" + iptosend + ".txt";
 				File f = new File(path);
