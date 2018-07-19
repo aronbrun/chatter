@@ -51,6 +51,7 @@ public class Client implements Runnable
                                     GUI.controllerClient.list_names.setItems(list);
                                     GUI.controllerClient.list_names.refresh();
                                     GUI.controllerClient.list_names.getSelectionModel().select(0);
+                                    GUI.controllerClient.chats.getSelectionModel().getSelectedIndex();
                                     GUI.controllerClient.ipsend = GUI.controllerClient.list_names.getSelectionModel().getSelectedItem().toString();
                         });
                         // GUI.controllerClient = null;
