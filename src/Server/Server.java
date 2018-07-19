@@ -61,4 +61,7 @@ public class Server
 		clientz.remove(clientThread);
 		sendClientList();
 	}
+	public static String getsendip(ClientThread clientThread) {
+		return clientThread.getSocket().getInetAddress().toString();
+	}
 }

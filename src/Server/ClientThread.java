@@ -2,9 +2,7 @@ package Server;
 
 import Client.GUI;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.lang.reflect.Field;
 import java.net.Socket;
 import java.net.SocketException;
@@ -17,6 +15,9 @@ public class ClientThread implements Runnable {
 	private String iptosend;
 	private String chattotake;
 	private String[] inputparts;
+	private String ipfrom;
+	private PrintWriter writer;
+	private File f;
 	public Socket getSocket() {
 		return socket;
 	}
@@ -59,7 +60,20 @@ public class ClientThread implements Runnable {
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}
+				ipfrom = Server.getsendip(this);
+				iptosend = iptosend.replace("/", "");
+				ipfrom = ipfrom.replace("/", "");
 
+				f = new File("D:\\Work\\Source\\github\\src\\chatlogs\\" + ipfrom + "--" + iptosend + ".txt", "UTF-8");
+				System.out.println("D:\\Work\\Source\\github\\src\\chatlogs\\" + ipfrom + "--" + iptosend + ".txt");
+				if(!f.exists()){
+					f.createNewFile();
+				}
+				FileWriter fw = new FileWriter(f,true);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter pw = new PrintWriter(bw);
+				pw.println("<" + input + "> "  + ipfrom + "---->" + iptosend);
+				pw.close();
 				//sending to one client
 				if(!iptosend.equals("") && !iptosend.equals("groupchat")){
 				for(int i = 0; i < Server.getClientList().size(); i++){
