@@ -62,16 +62,16 @@ public class ClientThread implements Runnable {
 				ipfrom = Server.getsendip(this);
 				iptosend = iptosend.replace("/", "");
 				ipfrom = ipfrom.replace("/", "");
-
-				File f = new File("D://Work//Source//github//src//chatlogs//" + ipfrom + "--" + iptosend + ".txt", "UTF-8");
+				String path = "D://Work//Source//github//src//chatlogs//" + ipfrom + "--" + iptosend + ".txt";
+				File f = new File(path);
 				if(!f.exists()){
-					f.getParentFile().mkdirs();
 					f.createNewFile();
 				}
 				FileWriter fw = new FileWriter(f,true);
 				BufferedWriter bw = new BufferedWriter(fw);
 				PrintWriter pw = new PrintWriter(bw);
-				pw.println("<" + input + "> "  + ipfrom + "---->" + iptosend);
+				pw.println("[" + input + "]:::::::::::"  + ipfrom + "---->" + iptosend);
+				System.out.println("[" + input + "] "  + ipfrom + "---->" + iptosend);
 				pw.close();
 				//sending to one client
 				if(!iptosend.equals("") && !iptosend.equals("groupchat")){
