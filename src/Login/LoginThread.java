@@ -55,7 +55,6 @@ public class LoginThread implements Runnable{
 				Object obj = din.readObject();
 				if(obj instanceof String && i == 0) {
 					String getmessage = (String) obj;
-					System.out.println(getmessage);
 					if (getmessage.equals("false")) {
 						Platform.runLater(()->{
 							Login.controllerLogin.showLogin();

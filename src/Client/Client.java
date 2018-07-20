@@ -49,8 +49,10 @@ public class Client implements Runnable
                         ArrayList<String> listnames = new ArrayList<>();
                         ArrayList<String> listips = new ArrayList<>();
                         String[] partsnameip;
+                        System.out.println(rawList.size());
                         for(int i= 0; i < rawList.size(); i++){
                             partsnameip = rawList.get(i).split(":");
+                            System.out.println(partsnameip[0] + "-" + GUI.controllerClient.clientname);
                             if(!partsnameip[0].equals(GUI.controllerClient.clientname)){
                                 System.out.println(partsnameip[0] + " - " + GUI.controllerClient.clientname);
                                 listnames.add(partsnameip[0]);

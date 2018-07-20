@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class Server
 {
 
-	private static final HashMap<ClientThread, String> clientz = new HashMap<ClientThread, String>();
+	private static final HashMap<String, ClientThread> clientz = new HashMap<>();
 
 	/**
 	 * The main method of the application. Serves as an entry point
@@ -33,7 +33,8 @@ public class Server
 				if (client != null) {
 					//starting new clienThread if client is not null
 					ClientThread ct = new ClientThread(client);
-					clientz.put(ct, client.getInetAddress().toString());
+						clientz.put(client.getInetAddress().toString(), ct);
+
 					new Thread(ct).start();
 					//sending clientList to Client
 				}
@@ -60,13 +61,13 @@ public class Server
 	}
 
 	public static ArrayList<ClientThread> getClientList() {
-		return new ArrayList<>(clientz.keySet());
-	}
-
-	public static ArrayList<String> getIPList() {
 		return clientz.entrySet().stream()
 				.map(Map.Entry::getValue)
 				.collect(Collectors.toCollection(ArrayList::new));
+	}
+
+	public static ArrayList<String> getIPList() {
+		return new ArrayList<>(clientz.keySet());
 	}
 
 	public static void removeClient(ClientThread clientThread) {
