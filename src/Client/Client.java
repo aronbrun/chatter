@@ -67,11 +67,17 @@ public class Client implements Runnable
                         ObservableList<String> listname = FXCollections.observableArrayList(listnames);
                         //adding groupchat to list
                         listname.add("groupchat");
+                        System.out.println("sick");
+                        Platform.runLater(()->{
+                            System.out.println(hash.get("Aron"));
+                        });
+
                         Platform.runLater(() -> {
                                     GUI.controllerClient.list_names.setItems(listname);
                                     GUI.controllerClient.list_names.refresh();
                                     GUI.controllerClient.list_names.getSelectionModel().select(0);
                                     GUI.controllerClient.chats.getSelectionModel().getSelectedIndex();
+                                    System.out.println(hash.get(GUI.controllerClient.list_names.getSelectionModel().getSelectedItem().toString()));
                                     GUI.controllerClient.ipsend = hash.get(GUI.controllerClient.list_names.getSelectionModel().getSelectedItem().toString());
                         });
                         // GUI.controllerClient = null;

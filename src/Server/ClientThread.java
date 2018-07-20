@@ -101,21 +101,18 @@ public class ClientThread implements Runnable {
 					ResultSet rs2 = stmt.executeQuery("SELECT * FROM login");
 					boolean exists = false;
 					//irritating trough all entrys in database
-					System.out.println("ipfrom :" + ipfrom);
 					while (rs2.next()) {
-						System.out.println("rs : " + rs2.getString(3) + "  from:" + ipfrom);
 								if(rs2.getString(3).equals(ipfrom)){
 									exists = true;
 								}
 						}
-						if(exists) {
+						if(!exists) {
 							stmt.execute("INSERT INTO login(name, ip) values('" + input + "', '" + ipfrom + "')");
 						}
 			}
 				//sending all usernames and ips from database to clients
 
 				for (int i = 0; i < Server.getIPList().size(); i++) {
-					System.out.println("iplist: " + Arrays.toString(Server.getIPList().toArray()));
 					ResultSet rs = stmt.executeQuery("SELECT * FROM login WHERE ip = '" + Server.getIPList().get(i) + "'");
 					while (rs.next()) {
 						sendipname.add(rs.getString(2) + ":" + rs.getString(3));
@@ -132,7 +129,7 @@ public class ClientThread implements Runnable {
 				try {
 					//getting input
 					input = (String) din.readObject();
-
+					System.out.println("input: " + input);
 					//splitting input into parts
 					inputparts = input.split(":");
 					input = inputparts[0];
@@ -201,7 +198,6 @@ public class ClientThread implements Runnable {
 				Statement stmt = con.createStatement();
 				Server.removeClient(this);
 				for (int i = 0; i < Server.getIPList().size(); i++) {
-					System.out.println("iplist: " + Arrays.toString(Server.getIPList().toArray()));
 					ResultSet rs = stmt.executeQuery("SELECT * FROM login WHERE ip = '" + Server.getIPList().get(i) + "'");
 					while (rs.next()) {
 						sendipname.add(rs.getString(2) + ":" + rs.getString(3));
