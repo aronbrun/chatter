@@ -68,9 +68,6 @@ public class Client implements Runnable
                         //adding groupchat to list
                         listname.add("groupchat");
                         System.out.println("sick");
-                        Platform.runLater(()->{
-                            System.out.println(hash.get("Aron"));
-                        });
 
                         Platform.runLater(() -> {
                                     GUI.controllerClient.list_names.setItems(listname);
@@ -78,7 +75,7 @@ public class Client implements Runnable
                                     GUI.controllerClient.list_names.getSelectionModel().select(0);
                                     GUI.controllerClient.chats.getSelectionModel().getSelectedIndex();
                                     System.out.println(hash.get(GUI.controllerClient.list_names.getSelectionModel().getSelectedItem().toString()));
-                                    GUI.controllerClient.ipsend = hash.get(GUI.controllerClient.list_names.getSelectionModel().getSelectedItem().toString());
+                                    GUI.controllerClient.ipsend = hash.get(GUI.controllerClient.list_names.getSelectionModel().getSelectedItem());
                         });
                         // GUI.controllerClient = null;
                         continue;
