@@ -119,7 +119,6 @@ public class ClientThread implements Runnable {
 					}
 				}
 				for (ClientThread clientThread : Server.getClientList()) {
-					System.out.println(Arrays.toString(sendipname.toArray()));
 					clientThread.send(sendipname);
 				}
 

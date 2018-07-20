@@ -54,20 +54,15 @@ public class Client implements Runnable
                         System.out.println(rawList.size());
                         for(int i= 0; i < rawList.size(); i++){
                             partsnameip = rawList.get(i).split(":");
-                            System.out.println(partsnameip[0] + "-" + GUI.controllerClient.clientname);
                             if(!partsnameip[0].equals(GUI.controllerClient.clientname)){
-                                System.out.println(partsnameip[0] + " - " + GUI.controllerClient.clientname);
                                 listnames.add(partsnameip[0]);
                             }
                             hash.put(partsnameip[0], partsnameip[1]);
                             listips.add(partsnameip[1]);
                         }
-                        ObservableList<String> listall = FXCollections.observableArrayList(rawList);
-                        ObservableList<String> listip = FXCollections.observableArrayList(listips);
                         ObservableList<String> listname = FXCollections.observableArrayList(listnames);
                         //adding groupchat to list
                         listname.add("groupchat");
-                        System.out.println("sick");
 
                         Platform.runLater(() -> {
                                     GUI.controllerClient.list_names.setItems(listname);
