@@ -58,13 +58,12 @@ public class ClientThread implements Runnable {
 	}
 
 
-
 	@Override
 	public void run() {
+		ipfrom = Server.getsendip(this);
 		try {
 			//putting username and ip into database
 			input = (String) din.readObject();
-				ipfrom = Server.getsendip(this);
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con=DriverManager.getConnection(
 						"jdbc:mysql://localhost:3306/chatter","root","");
@@ -102,26 +101,29 @@ public class ClientThread implements Runnable {
 					ResultSet rs2 = stmt.executeQuery("SELECT * FROM login");
 					boolean exists = false;
 					//irritating trough all entrys in database
+					System.out.println("ipfrom :" + ipfrom);
 					while (rs2.next()) {
-								exists = rs2.getString(3).equals(ipfrom);
+						System.out.println("rs : " + rs2.getString(3) + "  from:" + ipfrom);
+								if(rs2.getString(3).equals(ipfrom)){
+									exists = true;
+								}
 						}
-				if (!exists && input != null) {
-					stmt.execute("INSERT INTO login(name, ip) values('" + input +  "', '" + ipfrom + "')");
-				}
+						if(exists) {
+							stmt.execute("INSERT INTO login(name, ip) values('" + input + "', '" + ipfrom + "')");
+						}
 			}
 				//sending all usernames and ips from database to clients
-				if(input != null) {
-					for (int i = 0; i < Server.getIPList().size(); i++) {
-						System.out.println("iplist: "+ Arrays.toString(Server.getIPList().toArray()));
-						ResultSet rs = stmt.executeQuery("SELECT * FROM login WHERE ip = '" + Server.getIPList().get(i) + "'");
-						while (rs.next()) {
-							sendipname.add(rs.getString(2) + ":" + rs.getString(3));
-						}
+
+				for (int i = 0; i < Server.getIPList().size(); i++) {
+					System.out.println("iplist: " + Arrays.toString(Server.getIPList().toArray()));
+					ResultSet rs = stmt.executeQuery("SELECT * FROM login WHERE ip = '" + Server.getIPList().get(i) + "'");
+					while (rs.next()) {
+						sendipname.add(rs.getString(2) + ":" + rs.getString(3));
 					}
-					for (ClientThread clientThread : Server.getClientList()) {
-						System.out.println(Arrays.toString(sendipname.toArray()));
-						clientThread.send(sendipname);
-					}
+				}
+				for (ClientThread clientThread : Server.getClientList()) {
+					System.out.println(Arrays.toString(sendipname.toArray()));
+					clientThread.send(sendipname);
 				}
 
 
@@ -192,6 +194,28 @@ public class ClientThread implements Runnable {
 			}
 		} catch (SocketException e) {
 			Server.removeClient(this);
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection con = DriverManager.getConnection(
+						"jdbc:mysql://localhost:3306/chatter", "root", "");
+				Statement stmt = con.createStatement();
+				Server.removeClient(this);
+				for (int i = 0; i < Server.getIPList().size(); i++) {
+					System.out.println("iplist: " + Arrays.toString(Server.getIPList().toArray()));
+					ResultSet rs = stmt.executeQuery("SELECT * FROM login WHERE ip = '" + Server.getIPList().get(i) + "'");
+					while (rs.next()) {
+						sendipname.add(rs.getString(2) + ":" + rs.getString(3));
+					}
+				}
+				for (ClientThread clientThread : Server.getClientList()) {
+					System.out.println(Arrays.toString(sendipname.toArray()));
+					clientThread.send(sendipname);
+				}
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			Thread.currentThread().interrupt();
 		} catch (IOException e) {
 			e.printStackTrace();
