@@ -20,6 +20,7 @@ public class Client implements Runnable
     private Socket socket;
     private ObjectInputStream din;
     private static ObjectOutputStream dout;
+    public  static HashMap<String, String> hash = new HashMap<>();
 
     public Client(String ip, int port) {
         try {
@@ -49,7 +50,6 @@ public class Client implements Runnable
                         System.out.println(Arrays.toString(rawList.toArray()));
                         ArrayList<String> listnames = new ArrayList<>();
                         ArrayList<String> listips = new ArrayList<>();
-                        HashMap<String, String> hash = new HashMap<>();
                         String[] partsnameip;
                         System.out.println(rawList.size());
                         for(int i= 0; i < rawList.size(); i++){
@@ -74,8 +74,7 @@ public class Client implements Runnable
                                     GUI.controllerClient.list_names.refresh();
                                     GUI.controllerClient.list_names.getSelectionModel().select(0);
                                     GUI.controllerClient.chats.getSelectionModel().getSelectedIndex();
-                                    System.out.println(hash.get(GUI.controllerClient.list_names.getSelectionModel().getSelectedItem().toString()));
-                                    GUI.controllerClient.ipsend = hash.get(GUI.controllerClient.list_names.getSelectionModel().getSelectedItem());
+                                    GUI.controllerClient.ipsend = hash.get(GUI.controllerClient.list_names.getSelectionModel().getSelectedItem().toString());
                         });
                         // GUI.controllerClient = null;
                         continue;

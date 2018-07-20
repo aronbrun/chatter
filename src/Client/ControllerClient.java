@@ -133,7 +133,7 @@ public class ControllerClient implements Initializable {
 		//choosing chat to send text on
 		list_names.setOnMouseClicked(event ->{
 			try {
-				ipsend = list_names.getSelectionModel().getSelectedItem().toString();
+				ipsend = Client.hash.get(list_names.getSelectionModel().getSelectedItem().toString());
 				if(ipsend.equals("groupchat")){
 					chats.getSelectionModel().select(chat);
 				}
