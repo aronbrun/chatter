@@ -30,6 +30,9 @@ public class ClientThread implements Runnable {
 	private String ipone;
 	private String iptwo;
 	private String finalname;
+	private boolean notnull =false;
+	private boolean ipgot = false;
+	private int i = 0;
 	private ArrayList<String> sendipname= new ArrayList<>();
 	public Socket getSocket() {
 		return socket;
@@ -61,6 +64,9 @@ public class ClientThread implements Runnable {
 		try {
 			//putting username and ip into database
 			input = (String) din.readObject();
+			if(input != null){
+			notnull = true;
+			}
 				ipfrom = Server.getsendip(this);
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con=DriverManager.getConnection(
@@ -71,6 +77,17 @@ public class ClientThread implements Runnable {
 
 				boolean exists = false;
 				while (rs.next()) {
+					if(notnull == true && ipgot == false){
+						if(("/" + input).equals(rs.getString(3))){
+							for(int ii = 0; ii < Server.getClientList().size(); ii++) {
+								if (Server.getClientList().get(ii).getSocket().getInetAddress().toString().equals("/"  + input)) {
+									Server.getClientList().get(ii).send("true");
+									input = null;
+								}
+							}
+						}
+						ipgot = true;
+					}
 					exists = rs.getString(3).equals(ipfrom);
 				}
 
@@ -94,6 +111,7 @@ public class ClientThread implements Runnable {
 				try {
 					//getting input
 					input = (String) din.readObject();
+
 					//splitting input into parts
 					inputparts = input.split(":");
 					input = inputparts[0];

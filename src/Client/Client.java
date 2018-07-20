@@ -43,12 +43,24 @@ public class Client implements Runnable
                     Object obj = din.readObject();
                     if (obj instanceof ArrayList) {
                         ArrayList<String> rawList = (ArrayList<String>) obj;
-                        ObservableList<String> list = FXCollections.observableArrayList(rawList);
+                        ArrayList<String> listnames = new ArrayList<>();
+                        ArrayList<String> listips = new ArrayList<>();
+                        String[] partsnameip;
+                        for(int i= 0; i < rawList.size(); i++){
+                            partsnameip = rawList.get(i).split(":");
+                            if(!partsnameip[0].equals(GUI.controllerClient.clientname)){
+                                System.out.println(partsnameip[0] + " - " + GUI.controllerClient.clientname);
+                                listnames.add(partsnameip[0]);
+                            }
+                            listips.add(partsnameip[1]);
+                        }
+                        ObservableList<String> listall = FXCollections.observableArrayList(rawList);
+                        ObservableList<String> listip = FXCollections.observableArrayList(listips);
+                        ObservableList<String> listname = FXCollections.observableArrayList(listnames);
                         //adding groupchat to list
-                        list.add("groupchat");
-                        list.remove("/" + GUI.controllerClient.clientip);
+                        listname.add("groupchat");
                         Platform.runLater(() -> {
-                                    GUI.controllerClient.list_names.setItems(list);
+                                    GUI.controllerClient.list_names.setItems(listname);
                                     GUI.controllerClient.list_names.refresh();
                                     GUI.controllerClient.list_names.getSelectionModel().select(0);
                                     GUI.controllerClient.chats.getSelectionModel().getSelectedIndex();
