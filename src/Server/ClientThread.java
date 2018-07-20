@@ -110,16 +110,17 @@ public class ClientThread implements Runnable {
 				}
 			}
 				//sending all usernames and ips from database to clients
-
-				for (int i = 0; i < Server.getIPList().size(); i++) {
-					ResultSet rs = stmt.executeQuery("SELECT * FROM login WHERE ip = '" + Server.getIPList().get(i) + "'");
-					while (rs.next()) {
-						sendipname.add(rs.getString(2) + ":" + rs.getString(3));
+				if(input != null) {
+					for (int i = 0; i < Server.getIPList().size(); i++) {
+						ResultSet rs = stmt.executeQuery("SELECT * FROM login WHERE ip = '" + Server.getIPList().get(i) + "'");
+						while (rs.next()) {
+							sendipname.add(rs.getString(2) + ":" + rs.getString(3));
+						}
 					}
-				}
-				for (ClientThread clientThread : Server.getClientList()) {
-					System.out.println(Arrays.toString(sendipname.toArray()));
-					clientThread.send(sendipname);
+					for (ClientThread clientThread : Server.getClientList()) {
+						System.out.println(Arrays.toString(sendipname.toArray()));
+						clientThread.send(sendipname);
+					}
 				}
 
 
