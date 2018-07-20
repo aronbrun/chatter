@@ -1,5 +1,6 @@
 package Login;
 
+import Client.ControllerClient;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -10,7 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class Login extends Application {
-
+    public static ControllerLogin controllerLogin = new ControllerLogin();
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../Login/login.fxml"));

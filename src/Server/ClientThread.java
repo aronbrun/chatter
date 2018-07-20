@@ -30,7 +30,6 @@ public class ClientThread implements Runnable {
 	private String ipone;
 	private String iptwo;
 	private String finalname;
-	private boolean notnull =false;
 	private boolean ipgot = false;
 	private int i = 0;
 	private ArrayList<String> sendipname= new ArrayList<>();
@@ -64,10 +63,6 @@ public class ClientThread implements Runnable {
 		try {
 			//putting username and ip into database
 			input = (String) din.readObject();
-			System.out.println(input);
-			if(input != null){
-			notnull = true;
-			}
 				ipfrom = Server.getsendip(this);
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con=DriverManager.getConnection(
@@ -75,40 +70,49 @@ public class ClientThread implements Runnable {
 				Statement stmt=con.createStatement();
 				for (int i =0; i < Server.getIPList().size(); i++) {
 				ResultSet rs = stmt.executeQuery("SELECT * FROM login");
-
-				boolean exists = false;
+				//irritating trough all entrys in database
 				while (rs.next()) {
-					if(notnull == true && ipgot == false){
-						System.out.println(input);
+					//if the input isnt null and the ip hasnt found yet continue
+					if(input != null && ipgot == false){
+						//if the ip is in entry from database-> ipgot = true
 						if(("/" + input).equals(rs.getString(3))){
 							for(int ii = 0; ii < Server.getClientList().size(); ii++) {
 								if (Server.getClientList().get(ii).getSocket().getInetAddress().toString().equals("/"  + input)) {
-									System.out.println("true");
-									Server.getClientList().get(ii).send("true");
-									input = null;
-								}else{
-									System.out.println("false");
-									Server.getClientList().get(ii).send("false");
-									input = null;
+									Server.getClientList().get(ii).send(rs.getString(2));
 								}
+								input = null;
+							}
+							ipgot = true;
+							input = null;
+						}
+					}
+				}
+				//if ip is not found in database
+				if(ipgot == false) {
+						for (int ii = 0; ii < Server.getClientList().size(); ii++) {
+							if (Server.getClientList().get(ii).getSocket().getInetAddress().toString().equals("/" + input)) {
+								Server.getClientList().get(ii).send("false");
+								input = null;
+								ipgot = true;
 							}
 						}
-						ipgot = true;
-					}
-					exists = rs.getString(3).equals(ipfrom);
-				}
 
-				if (!exists) {
+					}
+					ResultSet rs2 = stmt.executeQuery("SELECT * FROM login");
+					boolean exists = false;
+					//irritating trough all entrys in database
+					while (rs2.next()) {
+								exists = rs2.getString(3).equals(ipfrom);
+						}
+				if (!exists && input != null) {
 					stmt.execute("INSERT INTO login(name, ip) values('" + input +  "', '" + ipfrom + "')");
 				}
 			}
 				//sending all usernames and ips from database to clients
-			for (int i =0; i < Server.getIPList().size(); i++) {
-				ResultSet rs = stmt.executeQuery("SELECT * FROM login WHERE ip = '" + Server.getIPList().get(i) + "'");
+				ResultSet rs = stmt.executeQuery("SELECT * FROM login");
 				while (rs.next()) {
 					sendipname.add(rs.getString(2) + ":" + rs.getString(3));
 				}
-			}
 			for (ClientThread clientThread : Server.getClientList()) {
 				clientThread.send(sendipname);
 			}

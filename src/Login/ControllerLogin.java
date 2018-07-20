@@ -44,6 +44,7 @@ public class ControllerLogin implements Initializable
 	public static String username;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+	    Login.controllerLogin = this;
 	    LoginThread lt = new LoginThread();
 	    new Thread(lt).start();
 		    btnContinue.setOnAction(event -> {

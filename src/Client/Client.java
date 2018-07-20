@@ -10,6 +10,8 @@ import java.io.*;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import Login.ControllerLogin;
 
 public class Client implements Runnable
@@ -43,6 +45,7 @@ public class Client implements Runnable
                     Object obj = din.readObject();
                     if (obj instanceof ArrayList) {
                         ArrayList<String> rawList = (ArrayList<String>) obj;
+                        System.out.println(Arrays.toString(rawList.toArray()));
                         ArrayList<String> listnames = new ArrayList<>();
                         ArrayList<String> listips = new ArrayList<>();
                         String[] partsnameip;

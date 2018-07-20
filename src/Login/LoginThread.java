@@ -56,10 +56,20 @@ public class LoginThread implements Runnable{
 				if(obj instanceof String && i == 0) {
 					String getmessage = (String) obj;
 					System.out.println(getmessage);
-					if (getmessage.equals("true")) {
-						System.out.println("hey");
+					if (getmessage.equals("false")) {
+						Platform.runLater(()->{
+							Login.controllerLogin.showLogin();
+						});
 					} else {
-						ControllerLogin.getInstance().showLogin();
+						GUI g = new GUI();
+						Platform.runLater(()->{
+							ControllerLogin.username = getmessage;
+							try {
+								g.start(Login.controllerLogin.s);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						});
 					}
 					i++;
 				}
