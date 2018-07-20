@@ -112,6 +112,7 @@ public class ClientThread implements Runnable {
 				//sending all usernames and ips from database to clients
 				if(input != null) {
 					for (int i = 0; i < Server.getIPList().size(); i++) {
+						System.out.println("iplist: "+ Arrays.toString(Server.getIPList().toArray()));
 						ResultSet rs = stmt.executeQuery("SELECT * FROM login WHERE ip = '" + Server.getIPList().get(i) + "'");
 						while (rs.next()) {
 							sendipname.add(rs.getString(2) + ":" + rs.getString(3));

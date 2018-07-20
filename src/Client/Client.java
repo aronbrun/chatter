@@ -11,6 +11,7 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import Login.ControllerLogin;
 
@@ -48,6 +49,7 @@ public class Client implements Runnable
                         System.out.println(Arrays.toString(rawList.toArray()));
                         ArrayList<String> listnames = new ArrayList<>();
                         ArrayList<String> listips = new ArrayList<>();
+                        HashMap<String, String> hash = new HashMap<>();
                         String[] partsnameip;
                         System.out.println(rawList.size());
                         for(int i= 0; i < rawList.size(); i++){
@@ -57,6 +59,7 @@ public class Client implements Runnable
                                 System.out.println(partsnameip[0] + " - " + GUI.controllerClient.clientname);
                                 listnames.add(partsnameip[0]);
                             }
+                            hash.put(partsnameip[0], partsnameip[1]);
                             listips.add(partsnameip[1]);
                         }
                         ObservableList<String> listall = FXCollections.observableArrayList(rawList);
@@ -69,7 +72,7 @@ public class Client implements Runnable
                                     GUI.controllerClient.list_names.refresh();
                                     GUI.controllerClient.list_names.getSelectionModel().select(0);
                                     GUI.controllerClient.chats.getSelectionModel().getSelectedIndex();
-                                    GUI.controllerClient.ipsend = GUI.controllerClient.list_names.getSelectionModel().getSelectedItem().toString();
+                                    GUI.controllerClient.ipsend = hash.get(GUI.controllerClient.list_names.getSelectionModel().getSelectedItem().toString());
                         });
                         // GUI.controllerClient = null;
                         continue;

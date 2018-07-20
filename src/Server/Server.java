@@ -71,7 +71,7 @@ public class Server
 	}
 
 	public static void removeClient(ClientThread clientThread) {
-		clientz.remove(clientThread);
+		clientz.remove(clientThread.getSocket().getInetAddress());
 		sendClientList();
 	}
 	public static String getsendip(ClientThread clientThread) {
