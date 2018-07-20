@@ -64,6 +64,7 @@ public class ClientThread implements Runnable {
 		try {
 			//putting username and ip into database
 			input = (String) din.readObject();
+			System.out.println(input);
 			if(input != null){
 			notnull = true;
 			}
@@ -78,10 +79,16 @@ public class ClientThread implements Runnable {
 				boolean exists = false;
 				while (rs.next()) {
 					if(notnull == true && ipgot == false){
+						System.out.println(input);
 						if(("/" + input).equals(rs.getString(3))){
 							for(int ii = 0; ii < Server.getClientList().size(); ii++) {
 								if (Server.getClientList().get(ii).getSocket().getInetAddress().toString().equals("/"  + input)) {
+									System.out.println("true");
 									Server.getClientList().get(ii).send("true");
+									input = null;
+								}else{
+									System.out.println("false");
+									Server.getClientList().get(ii).send("false");
 									input = null;
 								}
 							}

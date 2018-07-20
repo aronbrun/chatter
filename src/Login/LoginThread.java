@@ -1,6 +1,8 @@
 package Login;
 
+import Client.GUI;
 import javafx.application.Platform;
+import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -15,6 +17,7 @@ public class LoginThread implements Runnable{
 	private Socket socket;
 	private ObjectInputStream din;
 	private static ObjectOutputStream dout;
+	private Stage s = new Stage();
 	public static void send(String text) {
 		try {
 			dout.writeObject((String) text);
@@ -45,20 +48,29 @@ public class LoginThread implements Runnable{
 		Platform.runLater(() ->{
 			send(inet);
 		});
+		int i = 0;
 		while (true) {
 			try {
 				//reading message from Server
 				Object obj = din.readObject();
-				String getmessage = (String) obj;
-				if(getmessage.equals("true")){
-					Login.handle();
+				if(obj instanceof String && i == 0) {
+					String getmessage = (String) obj;
+					System.out.println(getmessage);
+					if (getmessage.equals("true")) {
+						System.out.println("hey");
+					} else {
+						ControllerLogin.getInstance().showLogin();
+					}
+					i++;
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 
-	}
+		}
 	}
 }
