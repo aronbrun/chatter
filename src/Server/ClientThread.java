@@ -10,6 +10,7 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -109,10 +110,13 @@ public class ClientThread implements Runnable {
 				}
 			}
 				//sending all usernames and ips from database to clients
-				ResultSet rs = stmt.executeQuery("SELECT * FROM login");
+			for (int i =0; i < Server.getIPList().size(); i++) {
+				ResultSet rs = stmt.executeQuery("SELECT * FROM login WHERE ip = '" + Server.getIPList().get(i) + "'");
 				while (rs.next()) {
 					sendipname.add(rs.getString(2) + ":" + rs.getString(3));
+					System.out.println(Arrays.toString(sendipname.toArray()));
 				}
+			}
 			for (ClientThread clientThread : Server.getClientList()) {
 				clientThread.send(sendipname);
 			}
