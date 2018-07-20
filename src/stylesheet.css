@@ -4,4 +4,14 @@
 
 #lv .list-cell {
     -fx-alignment: top-right;
+	-fx-border-color: #c0392b;
+	-fx-border-radius: 10 10 0 10;
+	-fx-selection-bar-non-focused: #c0392b;
+}
+
+#overview .list-cell {
+	-fx-control-inner-background: #e74c3c;
+    -fx-selection-bar: #c0392b;
+	-fx-selection-bar-non-focused: #c0392b;
+	-fx-text-fill: white;
 }

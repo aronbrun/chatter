@@ -9,11 +9,11 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="pane" prefHeight="700.0" prefWidth="863.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.ControllerClient">
+<AnchorPane fx:id="pane" prefHeight="707.0" prefWidth="863.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.ControllerClient">
    <children>
-      <JFXTextArea fx:id="send_text" layoutX="233.0" layoutY="501.0" prefHeight="45.0" prefWidth="357.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="233.0" AnchorPane.rightAnchor="110.0" />
-      <JFXButton fx:id="btn_send" layoutX="590.0" layoutY="652.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="101.0" text="send" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="9.0" />
-      <JFXListView fx:id="list_names" prefHeight="700.0" prefWidth="223.0" stylesheets="@../stylesheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <JFXTextArea fx:id="send_text" layoutX="232.0" layoutY="648.0" prefHeight="45.0" prefWidth="357.0" style="-fx-border-color: #e74c3c;" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="232.0" AnchorPane.rightAnchor="111.0" />
+      <JFXButton fx:id="btn_send" layoutX="757.0" layoutY="649.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="101.0" style="-fx-background-color: #e74c3c;" text="send" textFill="WHITE" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="5.0" />
+      <JFXListView id="overview" fx:id="list_names" prefHeight="700.0" prefWidth="223.0" style="-fx-background-color: #e74c3c;" stylesheets="@../stylesheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <TabPane fx:id="chats" layoutX="223.0" layoutY="-29.0" prefHeight="669.0" prefWidth="478.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-29.0">
         <tabs>
           <Tab fx:id="chat1" text="chat1">
